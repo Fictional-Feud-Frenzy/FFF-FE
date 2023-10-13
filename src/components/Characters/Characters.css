@@ -1,0 +1,18 @@
+img {
+  height: 100px;
+  width: 100px;
+}
+
+.name {
+  margin: 0
+}
+.character-card {
+  margin: 5px
+}
+
+.characters {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: 2px solid black
+}
