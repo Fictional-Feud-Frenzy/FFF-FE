@@ -10,9 +10,14 @@ img {
   margin: 5px
 }
 
-.characters {
+.characters-list {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   border: 2px solid black
+}
+
+.characters-header {
+  display: flex;
+  justify-content: center;
 }
