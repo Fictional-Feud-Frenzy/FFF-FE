@@ -2,6 +2,7 @@
 import './App.css';
 import { useState } from 'react';
 import Characters from "../Characters/Characters"
+import CharacterInfo from '../CharacterInfo/CharacterInfo';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -14,7 +15,7 @@ function App() {
 
   function getCharacters(){
       setCharacters([
-        {id:1 ,name:'batman', image:"https://i0.wp.com/www.michigandaily.com/wp-content/uploads/2023/06/Untitled_Artwork-116.png?resize=1024%2C683&ssl=1" },
+        {id:1 ,name:'batman', intelligence: 100, strength: 26, speed: 27, durability: 50, power: 47, combat: 100, publisher: "DC Comics", image:"https://i0.wp.com/www.michigandaily.com/wp-content/uploads/2023/06/Untitled_Artwork-116.png?resize=1024%2C683&ssl=1" },
         {id:2, name:'batman', image:"https://i0.wp.com/www.michigandaily.com/wp-content/uploads/2023/06/Untitled_Artwork-116.png?resize=1024%2C683&ssl=1" },
         {id:3, name:'batman', image:"https://i0.wp.com/www.michigandaily.com/wp-content/uploads/2023/06/Untitled_Artwork-116.png?resize=1024%2C683&ssl=1" },
         {id:4, name:'batman', image:"https://i0.wp.com/www.michigandaily.com/wp-content/uploads/2023/06/Untitled_Artwork-116.png?resize=1024%2C683&ssl=1" },
@@ -41,6 +42,7 @@ function App() {
       </div>
       <button className="characters-button" onClick={()=>{getCharacters()}}>View Characters</button>
       <Characters characters={characters} selectCharacter={selectCharacter}></Characters>
+      <CharacterInfo character={character}/>
     </div>
   );
 }
