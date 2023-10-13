@@ -1,14 +1,14 @@
 import './CharacterInfo.css'
 
-export default function CharacterInfo({character}){
+export default function CharacterInfo({character, selectPlayer1, selectPlayer2}){
 return (
   <div className="character-info">
     <div className="character-header">
       <button>Back</button>
       <h1>{character.name}</h1>
       <div className="select-btns">
-        <button>select p1</button>
-        <button>select p2</button>
+        <button onClick={()=>selectPlayer1(character)}>select p1</button>
+        <button onClick={()=>selectPlayer2(character)}>select p2</button>
       </div>
     </div>
     <div className="description-container">
