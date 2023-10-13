@@ -1,0 +1,9 @@
+.battle-images{
+  display: flex;
+  justify-content: center;
+}
+
+.bang{
+  margin: 0;
+  font-size: 100px;
+}
