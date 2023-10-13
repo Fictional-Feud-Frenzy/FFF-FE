@@ -13,7 +13,7 @@ return (
     </div>
     <div className="description-container">
       <div className="character-picpub" >
-        <img src={character.image} className="character-img" />
+        <img src={character.image} className="character-img" alt={character.name}/>
         <p>Published by: {character.publisher}</p>
       </div>
       <div className="character-stats">
