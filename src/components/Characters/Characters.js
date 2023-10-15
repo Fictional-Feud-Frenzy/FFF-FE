@@ -1,21 +1,71 @@
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
+import { useQuery, gql } from '@apollo/client';
 
-export default function Characters({characters, selectCharacter, player1, player2, displayFight}){
-  let displayedCharacters = characters.map(character=>{
-    character.key = character.id
+const GET_CHARACTERS = gql`
+query GET_CHARACTERS {
+  Characters {
+      id
+      name
+      intelligence
+      strength
+      speed
+      durability
+      power
+      combat
+      full_name
+      publisher
+      alignment
+      image
+  }
+}
+`;
+
+export default function Characters({ selectCharacter, player1, player2, displayFight}){
+  
+  const {data, loading, error} = useQuery(GET_CHARACTERS);
+
+  let displayedCharacters = data.Characters.map(({id,
+    name,
+    intelligence,
+    strength,
+    speed,
+    durability,
+    power,
+    combat,
+    full_name,
+    publisher,
+    alignment,
+    image}) =>{
   return (
     <CharacterCard 
-      name={character.name}
-      image={character.image}
-      id={character.id}
-      key={character.id}
-      character={character}
+      id={id}
+      name={name}
+      image={image}
+      key={id}
+      intelligence={intelligence}
+      strength={strength}
+      speed={speed}
+      durability={durability}
+      power={power}
+      combat={combat}
+      full_name={full_name}
+      publisher={publisher}
+      alignment={alignment}
+      character={{ id, name, intelligence, strength, speed, durability,
+       power, combat, full_name, publisher, alignment, image}}
       selectCharacter={selectCharacter}
     />
   )
   })
-return(
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error</div>;
+  }
+
+return (
   <div className="characters">
     <div className="characters-header">
       {player1?<img src={player1.image} alt={player1.name} />:<p>Please Choose Player 1</p>}
@@ -30,5 +80,5 @@ return(
       {displayedCharacters}
     </div>
   </div>
-)
+);
 }

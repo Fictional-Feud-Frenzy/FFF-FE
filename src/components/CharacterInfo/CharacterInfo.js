@@ -1,5 +1,30 @@
 import './CharacterInfo.css'
 
+// query getCharacter($id: Integer!) {
+//   queryCharacter (byId: $id) {
+//       id
+//       name
+//       intelligence
+//       strength
+//       speed
+//       durability
+//       power
+//       combat
+//       full_name
+//       place_of_birth
+//       publisher
+//       alignment
+//       gender
+//       race
+//       height
+//       weight
+//       eye_color
+//       hair_color
+//       group_affiliation
+//       image
+//   }
+// }
+
 export default function CharacterInfo({character, selectPlayer1, selectPlayer2}){
 return (
   <div className="character-info">

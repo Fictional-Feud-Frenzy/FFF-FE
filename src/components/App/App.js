@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Characters from "../Characters/Characters"
 import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import BattleScreen from '../BattleScreen/BattleScreen';
+import client from "../../ApolloClient/client";
+import { ApolloProvider } from '@apollo/client';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -62,15 +64,17 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="Header">
-        <h1>Fictional Feud Frenzy</h1>
+    <ApolloProvider client = {client}>
+      <div className="App">
+        <div className="Header">
+          <h1>Fictional Feud Frenzy</h1>
+        </div>
+        <button className="characters-button" onClick={()=>{getCharacters()}}>View Characters</button>
+        <Characters characters={characters} selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner}></Characters>
+        <CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>
+        <BattleScreen player1={player1} player2={player2} winner={winner}></BattleScreen>
       </div>
-      <button className="characters-button" onClick={()=>{getCharacters()}}>View Characters</button>
-      <Characters characters={characters} selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner}></Characters>
-      <CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>
-      <BattleScreen player1={player1} player2={player2} winner={winner}></BattleScreen>
-    </div>
+    </ApolloProvider>
   );
 }
 
