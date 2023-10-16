@@ -1,7 +1,8 @@
 import './CharacterInfo.css'
 
-// query getCharacter($id: Integer!) {
-//   queryCharacter (byId: $id) {
+// const GET_CHARACTER = gql'
+//   query Character($id: Integer!) {
+//     character (byId: $id) {
 //       id
 //       name
 //       intelligence
@@ -22,8 +23,9 @@ import './CharacterInfo.css'
 //       hair_color
 //       group_affiliation
 //       image
+//     }
 //   }
-// }
+// ';
 
 export default function CharacterInfo({character, selectPlayer1, selectPlayer2}){
 return (

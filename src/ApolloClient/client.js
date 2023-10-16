@@ -1,7 +1,7 @@
 import {ApolloClient, InMemoryCache} from '@apollo/client';
 const client = new ApolloClient
 ({
-  uri: 'https://01bda5db-0263-4dc5-9ad3-0eb4fff5e35f.mock.pstmn.io/',
+  uri: 'https://fff-be-2e7913919a6b.herokuapp.com/',
   cache: new InMemoryCache(),
 });
 

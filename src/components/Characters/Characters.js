@@ -2,30 +2,31 @@ import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
 import { useQuery, gql } from '@apollo/client';
 
-const GET_CHARACTERS = gql`
-query GET_CHARACTERS {
-  Characters {
-      id
-      name
-      intelligence
-      strength
-      speed
-      durability
-      power
-      combat
-      full_name
-      publisher
-      alignment
-      image
-  }
-}
-`;
+// const GET_CHARACTERS = gql`
+// query GET_CHARACTERS {
+//   Characters {
+//       id
+//       name
+//       intelligence
+//       strength
+//       speed
+//       durability
+//       power
+//       combat
+//       full_name
+//       publisher
+//       alignment
+//       image
+//   }
+// }
+// `;
 
-export default function Characters({ selectCharacter, player1, player2, displayFight}){
+export default function Characters({characters, selectCharacter, player1, player2, displayFight}){
   
-  const {data, loading, error} = useQuery(GET_CHARACTERS);
+  // const {data, loading, error} = useQuery(GET_CHARACTERS);
 
-  let displayedCharacters = data.Characters.map(({id,
+  // let displayedCharacters = data.Characters.map(({id,
+  let displayedCharacters = characters.map(({id,
     name,
     intelligence,
     strength,
@@ -57,13 +58,9 @@ export default function Characters({ selectCharacter, player1, player2, displayF
       selectCharacter={selectCharacter}
     />
   )
-  })
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error</div>;
-  }
+  });
+  // if (loading) return 'Loading...';
+  // if (error) return 'Error';
 
 return (
   <div className="characters">
