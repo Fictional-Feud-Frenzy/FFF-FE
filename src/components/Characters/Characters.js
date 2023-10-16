@@ -5,9 +5,6 @@ import "./Characters.css"
 export default function Characters({setDropDownInput, dropDownInput, filterCharacters, characters, selectCharacter, player1, player2, displayFight, getCharacters}){
   const [userInput, setUserInput] = useState('')
   let displayedCharacters = characters.map(character=>{
-    console.log(character.publisher===dropDownInput)
-    console.log(character.publisher)
-    console.log(dropDownInput)
     character.key = character.id
     if(dropDownInput === 'other' && character.publisher !== 'marvel' && character.publisher !== 'DC Comics'){
     return (
@@ -31,7 +28,7 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
         selectCharacter={selectCharacter}
       /> 
     )} 
-  if(dropDownInput === 'all') {
+  if (dropDownInput === 'all') {
   return (
     <CharacterCard 
       name={character.name}
@@ -42,7 +39,9 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
       selectCharacter={selectCharacter}
     />
   )}
-  })
+  return true
+})
+  
 
 return(
   <div className="characters">
