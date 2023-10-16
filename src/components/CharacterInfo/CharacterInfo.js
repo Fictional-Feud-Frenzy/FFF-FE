@@ -4,16 +4,13 @@ export default function CharacterInfo({character, selectPlayer1, selectPlayer2})
 return (
   <div className="character-info">
     <div className="character-header">
-      <button>Back</button>
-      <h1>{character.name}</h1>
-      <div className="select-btns">
         <button onClick={()=>selectPlayer1(character)}>select p1</button>
+      <h1>{character.name}</h1>
         <button onClick={()=>selectPlayer2(character)}>select p2</button>
-      </div>
     </div>
     <div className="description-container">
       <div className="character-picpub" >
-        <img src={character.image} className="character-img" alt={character.name}/>
+        <img src={character.image} className="character-image" alt={character.name}/>
         <p>Published by: {character.publisher}</p>
       </div>
       <div className="character-stats">
