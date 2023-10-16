@@ -1,6 +1,6 @@
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
-import { useQuery, gql } from '@apollo/client';
+// import { useQuery, gql } from '@apollo/client';
 
 // const GET_CHARACTERS = gql`
 // query GET_CHARACTERS {
