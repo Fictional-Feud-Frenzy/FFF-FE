@@ -9,7 +9,29 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
     console.log(character.publisher)
     console.log(dropDownInput)
     character.key = character.id
-    if(dropDownInput==="all"){
+    if(dropDownInput === 'other' && character.publisher !== 'marvel' && character.publisher !== 'DC Comics'){
+    return (
+      <CharacterCard 
+        name={character.name}
+        image={character.image}
+        id={character.id}
+        key={character.id}
+        character={character}
+        selectCharacter={selectCharacter}
+      />
+    )} 
+  if(character.publisher===dropDownInput){
+    return (
+      <CharacterCard 
+        name={character.name}
+        image={character.image}
+        id={character.id}
+        key={character.id}
+        character={character}
+        selectCharacter={selectCharacter}
+      /> 
+    )} 
+  if(dropDownInput === 'all') {
   return (
     <CharacterCard 
       name={character.name}
@@ -19,27 +41,7 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
       character={character}
       selectCharacter={selectCharacter}
     />
-  )} else if(character.publisher===dropDownInput){
-  return (
-    <CharacterCard 
-      name={character.name}
-      image={character.image}
-      id={character.id}
-      key={character.id}
-      character={character}
-      selectCharacter={selectCharacter}
-    /> 
-  )} else if(character.publisher !== 'DC Comics' || 'marvel'){
-  return (
-    <CharacterCard 
-      name={character.name}
-      image={character.image}
-      id={character.id}
-      key={character.id}
-      character={character}
-      selectCharacter={selectCharacter}
-    />
-  )} 
+  )}
   })
 
 return(
