@@ -3,6 +3,11 @@
   justify-content: center;
 }
 
+.battle-image {
+  height: 25vw;
+  width: 25vw;
+}
+
 .bang {
   margin: 0;
   font-size: 100px;
