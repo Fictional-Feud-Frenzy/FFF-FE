@@ -1,9 +1,23 @@
-.battle-images{
+.battle-images {
   display: flex;
   justify-content: center;
 }
 
-.bang{
+.bang {
   margin: 0;
   font-size: 100px;
+}
+
+.fighter1-name {
+  margin: 0;
+}
+
+.fighter2-name {
+  margin: 0;
+}
+.fight-button {
+    font-size: 2em;
+    background: black;
+    color: white;
+    border-radius: 0.5em;
 }

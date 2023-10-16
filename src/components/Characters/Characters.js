@@ -15,16 +15,28 @@ export default function Characters({characters, selectCharacter, player1, player
     />
   )
   })
+  console.log(player1.image)
 return(
   <div className="characters">
     <div className="characters-header">
-      {player1?<img src={player1.image} alt={player1.name} />:<p>Please Choose Player 1</p>}
+      {player1.image !== undefined?
+      <div>
+        <p>Player 1:</p>
+        <img src={player1.image} alt={player1.name} /> 
+        <p>{player1.name}</p>
+      </div>:<p>Please Choose Player 1!!!</p>}
       <div className="title-search">
-        {player1&&player2?<button onClick={()=>{displayFight()}}>Fight!!!</button>:<h1>Choose Your Characters</h1>} 
+        {player1.image&&player2.image?<button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
+        :<h1>Choose Your Characters!</h1>} 
         <input type="text" placeholder="Search Characters"/>
         <button>Search</button>
       </div>
-      {player2?<img src={player2.image} alt={player2.name} />:<p>Please Choose Player 2</p>}
+      {player2.image !== undefined?
+      <div>
+        <p>Player 2:</p>
+        <img src={player2.image} alt={player2.name} /> 
+        <p>{player2.name}</p>
+      </div>:<p>Please Choose Player 2!!!</p>}
     </div>
     <div className="characters-list">
       {displayedCharacters}
