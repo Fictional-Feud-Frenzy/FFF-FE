@@ -13,7 +13,7 @@ query characters {
       durability
       power
       combat
-      full_name
+      fullName
       publisher
       alignment
       image
