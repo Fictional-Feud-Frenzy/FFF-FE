@@ -1,32 +1,31 @@
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
-// import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 
-// const GET_CHARACTERS = gql`
-// query GET_CHARACTERS {
-//   Characters {
-//       id
-//       name
-//       intelligence
-//       strength
-//       speed
-//       durability
-//       power
-//       combat
-//       full_name
-//       publisher
-//       alignment
-//       image
-//   }
-// }
-// `;
+const GET_CHARACTERS = gql`
+query characters {
+  characters {
+      id
+      name
+      intelligence
+      strength
+      speed
+      durability
+      power
+      combat
+      full_name
+      publisher
+      alignment
+      image
+  }
+}
+`;
 
-export default function Characters({characters, selectCharacter, player1, player2, displayFight}){
+export default function Characters({selectCharacter, player1, player2, displayFight}){
   
-  // const {data, loading, error} = useQuery(GET_CHARACTERS);
+  const {data, loading, error} = useQuery(GET_CHARACTERS);
 
-  // let displayedCharacters = data.Characters.map(({id,
-  let displayedCharacters = characters.map(({id,
+  let displayedCharacters = data.characters.map(({id,
     name,
     intelligence,
     strength,
@@ -34,7 +33,7 @@ export default function Characters({characters, selectCharacter, player1, player
     durability,
     power,
     combat,
-    full_name,
+    fullName,
     publisher,
     alignment,
     image}) =>{
@@ -50,17 +49,17 @@ export default function Characters({characters, selectCharacter, player1, player
       durability={durability}
       power={power}
       combat={combat}
-      full_name={full_name}
+      fullName={fullName}
       publisher={publisher}
       alignment={alignment}
       character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, full_name, publisher, alignment, image}}
+       power, combat, fullName, publisher, alignment, image}}
       selectCharacter={selectCharacter}
     />
   )
   });
-  // if (loading) return 'Loading...';
-  // if (error) return 'Error';
+  if (loading) return 'Loading...';
+  if (error) return 'Error';
 
 return (
   <div className="characters">
