@@ -3,8 +3,8 @@ import "./Characters.css"
 import { useQuery, gql } from '@apollo/client';
 
 const GET_CHARACTERS = gql`
-query GET_CHARACTERS {
-  Characters {
+query characters {
+  characters {
       id
       name
       intelligence
@@ -13,7 +13,7 @@ query GET_CHARACTERS {
       durability
       power
       combat
-      full_name
+      fullName
       publisher
       alignment
       image
@@ -22,10 +22,16 @@ query GET_CHARACTERS {
 `;
 
 export default function Characters({ selectCharacter, player1, player2, displayFight}){
-  
   const {data, loading, error} = useQuery(GET_CHARACTERS);
 
-  let displayedCharacters = data.Characters.map(({id,
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error</div>;
+  }
+
+  let displayedCharacters = data.characters.map(({id,
     name,
     intelligence,
     strength,
@@ -33,7 +39,7 @@ export default function Characters({ selectCharacter, player1, player2, displayF
     durability,
     power,
     combat,
-    full_name,
+    fullName,
     publisher,
     alignment,
     image}) =>{
@@ -49,21 +55,15 @@ export default function Characters({ selectCharacter, player1, player2, displayF
       durability={durability}
       power={power}
       combat={combat}
-      full_name={full_name}
+      full_name={fullName}
       publisher={publisher}
       alignment={alignment}
       character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, full_name, publisher, alignment, image}}
+      power, combat, fullName, publisher, alignment, image}}
       selectCharacter={selectCharacter}
     />
   )
   })
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error</div>;
-  }
 
 return (
   <div className="characters">
