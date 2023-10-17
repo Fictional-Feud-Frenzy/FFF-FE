@@ -13,12 +13,17 @@
 
 .character-header {
   display: flex;
-  justify-content: space-between;
-  width: 50vw;
+  justify-content: space-around;
+  width: 100vw;
 }
 
 .description-container {
   display: flex;
   justify-content: space-around;
   width: 50vw;
+}
+
+.character-image {
+  height: 30vw;
+  width: 30vw;
 }
