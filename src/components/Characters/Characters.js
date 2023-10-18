@@ -2,6 +2,7 @@ import { useState } from "react"
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
 import { useQuery, gql } from '@apollo/client';
+
 const GET_CHARACTERS = gql`
 query characters {
   characters {
@@ -20,10 +21,11 @@ query characters {
   }
 }
 `;
-export default function Characters({setDropDownInput, dropDownInput, filterCharacters, characters, selectCharacter, player1, player2, displayFight, getCharacters}){
+export default function Characters({setDropDownInput, dropDownInput, characters, setCharacters, filterCharacters, selectCharacter, player1, player2, displayFight}){
   const [userInput, setUserInput] = useState('')
     const {data, loading, error} = useQuery(GET_CHARACTERS);
-    let displayedCharacters = data.characters.map(({id,
+    setCharacters(data?.characters)
+    let displayedCharacters = characters.map(({id,
       name,
       intelligence,
       strength,
@@ -65,6 +67,7 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
     />
     )
 }
+return true
   });
   if (loading) return 'Loading...';
   if (error) return 'Error';
@@ -90,7 +93,7 @@ return(
         </select>
         <h3>Search By Name:</h3>
         <input type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
-        getCharacters()
+        // getCharacters()
         setUserInput(event.target.value)}}/>
         <button onClick={()=>filterCharacters(userInput)}>Search</button>
       </div>
