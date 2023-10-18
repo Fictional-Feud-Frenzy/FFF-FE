@@ -1,4 +1,3 @@
-import { useState } from "react"
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
 import { Link } from "react-router-dom"
@@ -23,10 +22,10 @@ query characters {
 }
 `;
 
-export default function Characters({setDropDownInput, dropDownInput, filterCharactersByName, sortCharactersByPublisher, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
-  const [userInput, setUserInput] = useState('')
+export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment,
+   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
     const {data, loading, error} = useQuery(GET_CHARACTERS);
-    if(!userInput && dropDownInput==='all'){setCharacters(data ? data.characters : characters)}
+    if(!userInput && publisher==='all' && alignment==='all'){setCharacters(data ? data.characters : characters)}
     let displayedCharacters = characters.map(({
       id,
       name,
@@ -49,7 +48,6 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
     )
 })
 
-console.log(displayedCharacters.length)
   if (loading) return 'Loading...';
   if (error) return 'Error';
 return(
@@ -69,8 +67,8 @@ return(
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
         <select name="publisher-dropdown" id="Select" label="choose" onChange={event =>{
-          sortCharactersByPublisher(data, event.target.value)
-          setDropDownInput(event.target.value)
+          filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment)
+          setPublisher(event.target.value)
         }}>
           <option value="all">ALL Publishers</option>
           <option value="DC Comics">DC Comics</option>
@@ -82,9 +80,19 @@ return(
           <option value="NBC - Heroes">NBC - Heroes</option>
           <option value="other">Other</option>
         </select>
+        <h3>Hero or Villian?</h3>
+        <select name="alignment-dropdown" id="Select" label="choose" onChange={event =>{
+          filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value)
+          setAlignment(event.target.value)
+        }}>
+          <option value="all">ALL Characters</option>
+          <option value="good">Hero</option>
+          <option value="bad">Villian</option>
+          <option value="other">Neutral</option>
+        </select>
         <h3>Search By Name:</h3>
         <input type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
-          filterCharactersByName(data, event.target.value)
+          filterCharactersByNamePublisherAlignment(data, event.target.value, publisher, alignment)
           setUserInput(event.target.value)
           }}/>
       </div>
