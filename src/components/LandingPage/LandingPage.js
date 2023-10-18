@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom"
+
 function LandingPage({characters, getCharacters}) {
   return(
-    !characters.length && <button className="characters-button" onClick={()=>{getCharacters()}}>View Characters</button>
+    <Link to="/characters">
+      <button className="characters-button" onClick={()=>{getCharacters()}}>View Characters</button>
+    </Link>
   )
 }
 

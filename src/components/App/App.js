@@ -5,6 +5,7 @@ import Characters from "../Characters/Characters"
 import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import BattleScreen from '../BattleScreen/BattleScreen';
 import LandingPage from '../LandingPage/LandingPage';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -82,13 +83,21 @@ function App() {
       <div className="Header">
         <h1>Fictional Feud Frenzy</h1>
       </div>
-      <LandingPage characters={characters} getCharacters={getCharacters} />
-      {!character.name?<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
+      <Routes>
+        <Route path="/" element={<LandingPage characters={characters} getCharacters={getCharacters} />} />
+        <Route path="/characters" element={<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
+          getCharacters={getCharacters} filterCharacters={filterCharacters} characters={characters}
+          selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} />} />
+        <Route path="/:id" element={<CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
+        <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />
+      </Routes>
+      {/* {!character.name?<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
        getCharacters={getCharacters} filterCharacters={filterCharacters} characters={characters}
       selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner}>
         </Characters>:
       <CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>}
-      <BattleScreen player1={player1} player2={player2} winner={winner}></BattleScreen>
+      <BattleScreen player1={player1} player2={player2} winner={winner}></BattleScreen> */}
+
     </div>
   );
 }
