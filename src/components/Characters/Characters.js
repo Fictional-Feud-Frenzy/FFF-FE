@@ -1,6 +1,7 @@
 import { useState } from "react"
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
+import { Link } from "react-router-dom"
 
 export default function Characters({setDropDownInput, dropDownInput, filterCharacters, characters, selectCharacter, player1, player2, displayFight, getCharacters}){
   const [userInput, setUserInput] = useState('')
@@ -53,7 +54,10 @@ return(
         <p>{player1.name}</p>
       </div>:<p>Please Select Player #1!!!</p>}
       <div className="title-search">
-        {player1.image&&player2.image?<button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
+        {player1.image&&player2.image?
+        <Link to="/battle-mode">
+          <button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
+        </Link>
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
         <select name="publisher-dropdown" id="Select" label="choose" onChange={event =>{ 
