@@ -7,6 +7,7 @@ import BattleScreen from '../BattleScreen/BattleScreen';
 import LandingPage from '../LandingPage/LandingPage';
 import { Routes, Route } from 'react-router-dom';
 import { testCharacters } from './testData'
+import { ApolloProvider } from '@apollo/client'
 
 function App() {
   const [characters, setCharacters] = useState(testCharacters);
@@ -53,11 +54,12 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="Header">
-        <h1>Fictional Feud Frenzy</h1>
-      </div>
-      <Routes>
+    <ApolloProvider client = {client}>
+      <div className="App">
+        <div className="Header">
+          <h1>Fictional Feud Frenzy</h1>
+        </div>
+        <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/characters" element={<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
           filterCharacters={filterCharacters} characters={characters}
@@ -65,7 +67,8 @@ function App() {
         <Route path="/:id" element={<CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
         <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />
       </Routes>
-    </div>
+      </div>
+    </ApolloProvider>
   );
 }
 
