@@ -1,0 +1,23 @@
+.characters-button-link {
+  text-decoration: none;
+  color: white;
+}
+.button-container {
+  width: 100vw;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.characters-button{
+  padding: 2em 1.5em 2em 1.5em;
+  transition: 1.2s;
+  background-image: url("../../assets/comicbookspread.jpeg");
+  font-size: 500%;
+  border-radius: 30px;
+}
+
+.characters-button:hover {
+  padding: 2.1em 1.6em 2.1em 1.6em;
+  transition: 1.2s;
+}
