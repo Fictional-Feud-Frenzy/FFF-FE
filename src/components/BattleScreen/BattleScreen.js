@@ -1,4 +1,5 @@
-import './BattleScreen.css'
+import { Link } from 'react-router-dom';
+import './BattleScreen.css';
 
 function BattleScreen({player1, player2, winner}){
   return(
@@ -14,7 +15,9 @@ function BattleScreen({player1, player2, winner}){
           <p className="fighter2-name">{player2.name}</p>
         </div>
       </div>
-      <button>Return To All Characters</button>
+      <Link to="/characters">
+        <button>Return To All Characters</button>
+      </Link>
     </div>
   )
 }

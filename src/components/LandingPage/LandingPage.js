@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function LandingPage({characters, getCharacters}) {
   return(
@@ -8,4 +8,4 @@ function LandingPage({characters, getCharacters}) {
   )
 }
 
-export default LandingPage
+export default LandingPage;
