@@ -25,13 +25,11 @@ function App() {
   function selectPlayer1(input){
     setCharacter({})
     setPlayer1(input)
-    // getCharacters()
   }
   
   function selectPlayer2(input){
     setCharacter({})
     setPlayer2(input)
-    // getCharacters()
   }
 
   function displayWinner(){
@@ -43,15 +41,36 @@ function App() {
       setWinner("It's a tie!")
     }
   }
-
-  function filterCharacters(userInput){
-    let filteredCharacters = characters.filter(character=> {
-      return character.name.toLowerCase().includes(userInput.toLowerCase())
+  
+  function filterCharactersByName(data, userInput){
+    let filteredCharacters = data.characters.filter(character=> {
+        return character.name.toLowerCase().includes(userInput.toLowerCase()) || character.fullName.toLowerCase().includes(userInput.toLowerCase())
     } )
-    if(!filteredCharacters.length){filteredCharacters = characters.filter(character=> {
-      return character.full_name.toLowerCase().includes(userInput.toLowerCase())
-    } )}
     setCharacters(filteredCharacters)
+  }
+
+  function sortCharactersByPublisher(data, publisher){
+    console.log("Hello")
+    let filteredCharacters = data.characters.filter(character=>{
+      if(publisher === 'all'){
+        return character
+      }
+      console.log(publisher === character.publisher)
+      if(publisher === character.publisher){
+        return character
+      }
+      if(publisher === 'other' && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
+      && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
+      && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes'){
+        return character
+      }
+    });
+    console.log(filteredCharacters)
+    setCharacters(filteredCharacters)
+  }
+
+  function sortCharactersByAlignment(data, alignment){
+    
   }
 
   return (
@@ -63,7 +82,7 @@ function App() {
         <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/characters" element={<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
-          filterCharacters={filterCharacters} characters={characters}
+          filterCharactersByName={filterCharactersByName} sortCharactersByPublisher={sortCharactersByPublisher} characters={characters}
           selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} setCharacters={setCharacters} />} />
         <Route path="/:id" element={<CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
         <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />

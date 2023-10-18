@@ -23,12 +23,12 @@ query characters {
 }
 `;
 
-export default function Characters({setDropDownInput, dropDownInput, filterCharacters, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
+export default function Characters({setDropDownInput, dropDownInput, filterCharactersByName, sortCharactersByPublisher, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
   const [userInput, setUserInput] = useState('')
     const {data, loading, error} = useQuery(GET_CHARACTERS);
-    setCharacters(data ? data.characters : characters)
-    console.log(data, characters, loading)
-    let displayedCharacters = characters.map(({id,
+    if(!userInput && dropDownInput==='all'){setCharacters(data ? data.characters : characters)}
+    let displayedCharacters = characters.map(({
+      id,
       name,
       intelligence,
       strength,
@@ -40,40 +40,16 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
       publisher,
       alignment,
       image}) => {
-  if(dropDownInput === 'other' && publisher !== 'Marvel Comics' && publisher !== 'DC Comics'
-        && publisher !== 'Dark Horse Comics' && publisher !== 'George Lucas'
-        && publisher !== 'Star Trek' && publisher !== 'SyFy' && publisher !== 'NBC - Heroes'){
     return (
       <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
        durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
-      character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, fullName, publisher, alignment, image}}
+      character={{ id, name, intelligence, strength, speed, durability, power, combat, fullName, publisher, alignment, image}}
       selectCharacter={selectCharacter}
     />
     )
-  }
-  if(publisher===dropDownInput){
-    return (
-      <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
-       durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
-      character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, fullName, publisher, alignment, image}}
-      selectCharacter={selectCharacter}
-    />
-    )
-  }
-  if (dropDownInput === 'all') {
-    return (
-      <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
-       durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
-      character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, fullName, publisher, alignment, image}}
-      selectCharacter={selectCharacter}
-    />
-    )
-}
-return true
-  });
+})
+
+console.log(displayedCharacters.length)
   if (loading) return 'Loading...';
   if (error) return 'Error';
 return(
@@ -93,7 +69,9 @@ return(
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
         <select name="publisher-dropdown" id="Select" label="choose" onChange={event =>{
-        setDropDownInput(event.target.value)}}>
+          sortCharactersByPublisher(data, event.target.value)
+          setDropDownInput(event.target.value)
+        }}>
           <option value="all">ALL Publishers</option>
           <option value="DC Comics">DC Comics</option>
           <option value="Marvel Comics">Marvel</option>
@@ -106,9 +84,9 @@ return(
         </select>
         <h3>Search By Name:</h3>
         <input type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
-        // getCharacters()
-        setUserInput(event.target.value)}}/>
-        <button onClick={()=>filterCharacters(userInput)}>Search</button>
+          filterCharactersByName(data, event.target.value)
+          setUserInput(event.target.value)
+          }}/>
       </div>
       {player2.image !== undefined?
       <div>
