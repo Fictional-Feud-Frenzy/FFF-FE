@@ -40,7 +40,9 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
       publisher,
       alignment,
       image}) => {
-  if(dropDownInput === 'other' && publisher !== 'marvel' && publisher !== 'DC Comics'){
+  if(dropDownInput === 'other' && publisher !== 'Marvel Comics' && publisher !== 'DC Comics'
+        && publisher !== 'Dark Horse Comics' && publisher !== 'George Lucas'
+        && publisher !== 'Star Trek' && publisher !== 'SyFy' && publisher !== 'NBC - Heroes'){
     return (
       <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
        durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
@@ -94,7 +96,12 @@ return(
         setDropDownInput(event.target.value)}}>
           <option value="all">ALL Publishers</option>
           <option value="DC Comics">DC Comics</option>
-          <option value="marvel">Marvel</option>
+          <option value="Marvel Comics">Marvel</option>
+          <option value="Dark Horse Comics">Dark Horse Comics</option>
+          <option value="George Lucas">George Lucas</option>
+          <option value="Star Trek">Star Trek</option>
+          <option value="SyFy">SyFy</option>
+          <option value="NBC - Heroes">NBC - Heroes</option>
           <option value="other">Other</option>
         </select>
         <h3>Search By Name:</h3>
