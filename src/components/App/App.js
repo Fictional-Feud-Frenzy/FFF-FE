@@ -8,6 +8,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import { Routes, Route } from 'react-router-dom';
 import { testCharacters } from './testData'
 import { ApolloProvider } from '@apollo/client'
+import client from "../../ApolloClient/client";
 
 function App() {
   const [characters, setCharacters] = useState(testCharacters);
@@ -63,7 +64,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/characters" element={<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
           filterCharacters={filterCharacters} characters={characters}
-          selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} />} />
+          selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} setCharacters={setCharacters} />} />
         <Route path="/:id" element={<CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
         <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />
       </Routes>
