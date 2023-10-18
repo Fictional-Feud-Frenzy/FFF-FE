@@ -24,7 +24,8 @@ query characters {
 export default function Characters({setDropDownInput, dropDownInput, characters, setCharacters, filterCharacters, selectCharacter, player1, player2, displayFight}){
   const [userInput, setUserInput] = useState('')
     const {data, loading, error} = useQuery(GET_CHARACTERS);
-    setCharacters(data?.characters)
+    setCharacters(data ? data.characters : characters)
+    console.log(data, characters, loading)
     let displayedCharacters = characters.map(({id,
       name,
       intelligence,
