@@ -1,4 +1,32 @@
-import './CharacterInfo.css'
+import './CharacterInfo.css';
+import { Link } from 'react-router-dom';
+
+// const GET_CHARACTER = gql'
+//   query Character($id: Integer!) {
+//     character (byId: $id) {
+//       id
+//       name
+//       intelligence
+//       strength
+//       speed
+//       durability
+//       power
+//       combat
+//       full_name
+//       place_of_birth
+//       publisher
+//       alignment
+//       gender
+//       race
+//       height
+//       weight
+//       eye_color
+//       hair_color
+//       group_affiliation
+//       image
+//     }
+//   }
+// ';
 
 // const GET_CHARACTER = gql'
 //   query Character($id: Integer!) {
@@ -31,9 +59,13 @@ export default function CharacterInfo({character, selectPlayer1, selectPlayer2})
 return (
   <div className="character-info">
     <div className="character-header">
+      <Link to="/characters">
         <button onClick={()=>selectPlayer1(character)}>select p1</button>
+      </Link>
       <h1>{character.name}</h1>
+      <Link to="/characters">
         <button onClick={()=>selectPlayer2(character)}>select p2</button>
+      </Link>
     </div>
     <div className="description-container">
       <div className="character-picpub" >

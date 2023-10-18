@@ -1,7 +1,8 @@
 import { useState } from "react"
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
-import { useQuery, gql } from '@apollo/client';
+import { Link } from "react-router-dom"
+import { useQuery, gql } from "@apollo/client"
 
 const GET_CHARACTERS = gql`
 query characters {
@@ -21,7 +22,8 @@ query characters {
   }
 }
 `;
-export default function Characters({setDropDownInput, dropDownInput, characters, setCharacters, filterCharacters, selectCharacter, player1, player2, displayFight}){
+
+export default function Characters({setDropDownInput, dropDownInput, filterCharacters, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
   const [userInput, setUserInput] = useState('')
     const {data, loading, error} = useQuery(GET_CHARACTERS);
     setCharacters(data ? data.characters : characters)
@@ -82,8 +84,11 @@ return(
         <p>{player1.name}</p>
       </div>:<p>Please Select Player #1!!!</p>}
       <div className="title-search">
-        {player1.image&&player2.image?<button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
-        :<h2>Choose Your Characters!</h2>}
+        {player1.image&&player2.image?
+        <Link to="/battle-mode">
+          <button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
+        </Link>
+        :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
         <select name="publisher-dropdown" id="Select" label="choose" onChange={event =>{
         setDropDownInput(event.target.value)}}>

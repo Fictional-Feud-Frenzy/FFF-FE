@@ -4,9 +4,11 @@ import { useState } from 'react';
 import Characters from "../Characters/Characters"
 import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import BattleScreen from '../BattleScreen/BattleScreen';
+import LandingPage from '../LandingPage/LandingPage';
+import { Routes, Route } from 'react-router-dom';
+import { testCharacters } from './testData'
+import { ApolloProvider } from '@apollo/client'
 import client from "../../ApolloClient/client";
-import { ApolloProvider } from '@apollo/client';
-import { testCharacters } from "./testData";
 
 function App() {
   const [characters, setCharacters] = useState(testCharacters);
@@ -58,13 +60,14 @@ function App() {
         <div className="Header">
           <h1>Fictional Feud Frenzy</h1>
         </div>
-        <button className="characters-button">View Characters</button>
-        {!character.name?<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
-          filterCharacters={filterCharacters} characters={characters} setCharacters={setCharacters}
-          selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner}>
-        </Characters>:
-        <CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>}
-        <BattleScreen player1={player1} player2={player2} winner={winner}></BattleScreen>
+        <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/characters" element={<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
+          filterCharacters={filterCharacters} characters={characters}
+          selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} setCharacters={setCharacters} />} />
+        <Route path="/:id" element={<CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
+        <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />
+      </Routes>
       </div>
     </ApolloProvider>
   );
