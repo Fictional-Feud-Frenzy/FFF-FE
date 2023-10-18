@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Characters from "../Characters/Characters"
 import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import BattleScreen from '../BattleScreen/BattleScreen';
+import LandingPage from '../LandingPage/LandingPage';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -81,7 +82,7 @@ function App() {
       <div className="Header">
         <h1>Fictional Feud Frenzy</h1>
       </div>
-      {!characters.length && <button className="characters-button" onClick={()=>{getCharacters()}}>View Characters</button>}
+      <LandingPage characters={characters} getCharacters={getCharacters} />
       {!character.name?<Characters dropDownInput={dropDownInput} setDropDownInput={setDropDownInput}
        getCharacters={getCharacters} filterCharacters={filterCharacters} characters={characters}
       selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner}>
