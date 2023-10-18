@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import { testCharacters } from './testData'
 import { ApolloProvider } from '@apollo/client'
 import client from "../../ApolloClient/client";
+import ffflogo from "../../assets/ffflogo.png";
 
 function App() {
   const [characters, setCharacters] = useState(testCharacters);
@@ -58,7 +59,7 @@ function App() {
     <ApolloProvider client = {client}>
       <div className="App">
         <div className="Header">
-          <h1>Fictional Feud Frenzy</h1>
+          <img className="logo" src={ffflogo} alt="fff-logo"/>
         </div>
         <Routes>
         <Route path="/" element={<LandingPage />} />
