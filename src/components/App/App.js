@@ -53,7 +53,6 @@ function App() {
   function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment){
     let filteredCharacters = data.characters.filter(character=> {
 
-
       if((publisher==='all' && alignment==='all' && character.name.toLowerCase().includes(userInput.toLowerCase()))
       || (publisher==='all' && alignment==='all' && character.fullName.toLowerCase().includes(userInput.toLowerCase()))
     ) {return character }
@@ -66,9 +65,7 @@ function App() {
       || (publisher === character.publisher && alignment===character.alignment && character.name.toLowerCase().includes(userInput.toLowerCase()))
       || (publisher === character.publisher && alignment===character.alignment && character.fullName.toLowerCase().includes(userInput.toLowerCase()))
       ){ return character } 
-      
-      // return character
-      
+    
       if(
         (publisher === 'other' && alignment===character.alignment && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
         && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
@@ -108,7 +105,6 @@ function App() {
       } )
       setCharacters(filteredCharacters)
     }
-    
     
     return (
       <ApolloProvider client = {client}>
