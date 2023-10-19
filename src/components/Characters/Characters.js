@@ -23,8 +23,8 @@ query characters {
 `;
 
 export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment,
-   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
-    const {data, loading, error} = useQuery(GET_CHARACTERS);
+   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight, clear}){
+     const {data, loading, error} = useQuery(GET_CHARACTERS);
     if(!userInput && publisher==='all' && alignment==='all'){setCharacters(data ? data.characters : characters)}
     let displayedCharacters = characters.map(({
       id,
@@ -43,7 +43,7 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
       <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
        durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
       character={{ id, name, intelligence, strength, speed, durability, power, combat, fullName, publisher, alignment, image}}
-      selectCharacter={selectCharacter}
+      selectCharacter={selectCharacter} clear={clear}
     />
     )
 })
@@ -66,7 +66,7 @@ return(
         </Link>
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
-        <select name="publisher-dropdown" id="Select" label="choose" onChange={event =>{
+        <select name="publisher-dropdown" id="Publisher" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment)
           setPublisher(event.target.value)
         }}>
@@ -81,7 +81,7 @@ return(
           <option value="other">Other</option>
         </select>
         <h3>Hero or Villian?</h3>
-        <select name="alignment-dropdown" id="Select" label="choose" onChange={event =>{
+        <select name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value)
           setAlignment(event.target.value)
         }}>
