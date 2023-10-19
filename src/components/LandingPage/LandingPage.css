@@ -8,13 +8,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10em;
 }
 .characters-button{
-  padding: 2em 1.5em 2em 1.5em;
-  transition: 1.2s;
   background-image: url("../../assets/comicbookspread.jpeg");
   font-size: 500%;
   border-radius: 30px;
+  padding: 2em 1.5em 2em 1.5em;
+  transition: 1.2s;
 }
 
 .characters-button:hover {
