@@ -1,4 +1,3 @@
-import { useState } from "react"
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
 import { Link } from "react-router-dom"
@@ -23,12 +22,12 @@ query characters {
 }
 `;
 
-export default function Characters({setDropDownInput, dropDownInput, filterCharacters, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
-  const [userInput, setUserInput] = useState('')
+export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment,
+   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight}){
     const {data, loading, error} = useQuery(GET_CHARACTERS);
-    setCharacters(data ? data.characters : characters)
-    console.log(data, characters, loading)
-    let displayedCharacters = characters.map(({id,
+    if(!userInput && publisher==='all' && alignment==='all'){setCharacters(data ? data.characters : characters)}
+    let displayedCharacters = characters.map(({
+      id,
       name,
       intelligence,
       strength,
@@ -40,38 +39,15 @@ export default function Characters({setDropDownInput, dropDownInput, filterChara
       publisher,
       alignment,
       image}) => {
-  if(dropDownInput === 'other' && publisher !== 'marvel' && publisher !== 'DC Comics'){
     return (
       <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
        durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
-      character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, fullName, publisher, alignment, image}}
+      character={{ id, name, intelligence, strength, speed, durability, power, combat, fullName, publisher, alignment, image}}
       selectCharacter={selectCharacter}
     />
     )
-  }
-  if(publisher===dropDownInput){
-    return (
-      <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
-       durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
-      character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, fullName, publisher, alignment, image}}
-      selectCharacter={selectCharacter}
-    />
-    )
-  }
-  if (dropDownInput === 'all') {
-    return (
-      <CharacterCard id={id} name={name} image={image} key={id} intelligence={intelligence} strength={strength} speed={speed}
-       durability={durability} power={power} combat={combat} fullName={fullName} publisher={publisher} alignment={alignment}
-      character={{ id, name, intelligence, strength, speed, durability,
-       power, combat, fullName, publisher, alignment, image}}
-      selectCharacter={selectCharacter}
-    />
-    )
-}
-return true
-  });
+})
+
   if (loading) return 'Loading...';
   if (error) return 'Error';
 return(
@@ -91,17 +67,34 @@ return(
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
         <select name="publisher-dropdown" id="Select" label="choose" onChange={event =>{
-        setDropDownInput(event.target.value)}}>
+          filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment)
+          setPublisher(event.target.value)
+        }}>
           <option value="all">ALL Publishers</option>
           <option value="DC Comics">DC Comics</option>
-          <option value="marvel">Marvel</option>
+          <option value="Marvel Comics">Marvel</option>
+          <option value="Dark Horse Comics">Dark Horse Comics</option>
+          <option value="George Lucas">George Lucas</option>
+          <option value="Star Trek">Star Trek</option>
+          <option value="SyFy">SyFy</option>
+          <option value="NBC - Heroes">NBC - Heroes</option>
           <option value="other">Other</option>
+        </select>
+        <h3>Hero or Villian?</h3>
+        <select name="alignment-dropdown" id="Select" label="choose" onChange={event =>{
+          filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value)
+          setAlignment(event.target.value)
+        }}>
+          <option value="all">ALL Characters</option>
+          <option value="good">Hero</option>
+          <option value="bad">Villian</option>
+          <option value="other">Neutral</option>
         </select>
         <h3>Search By Name:</h3>
         <input type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
-        // getCharacters()
-        setUserInput(event.target.value)}}/>
-        <button onClick={()=>filterCharacters(userInput)}>Search</button>
+          filterCharactersByNamePublisherAlignment(data, event.target.value, publisher, alignment)
+          setUserInput(event.target.value)
+          }}/>
       </div>
       {player2.image !== undefined?
       <div>
