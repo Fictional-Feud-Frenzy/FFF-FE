@@ -8,15 +8,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  color: rgb(131, 129, 129, .0);
 }
 
 .character-card-link {
   text-decoration: none;
+  background-color: rgb(131, 129, 129, .0);
 }
 
-.character-images {
-  height: 14em;
+.character-images, .character-image-header {
   border-radius: 15px;
+  height: 14em;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.character-images:hover {
+  height: 15em;
+  transition: 0.3s;
 }
 
 .name {

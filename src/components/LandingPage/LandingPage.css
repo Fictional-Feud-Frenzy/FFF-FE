@@ -12,6 +12,7 @@
 }
 .characters-button{
   background-image: url("../../assets/comicbookspread.jpeg");
+  background-size: 100%;
   font-size: 500%;
   border-radius: 30px;
   padding: 2em 1.5em 2em 1.5em;
@@ -21,4 +22,18 @@
 .characters-button:hover {
   padding: 2.1em 1.6em 2.1em 1.6em;
   transition: 1.2s;
+}
+
+.bg-vid {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.content-container {
+  position: relative;
+  z-index: 1;
 }

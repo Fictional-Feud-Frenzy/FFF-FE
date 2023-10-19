@@ -1,15 +1,13 @@
-.character-image-header {
-  height: 15vw;
-  width: 15vw;
-}
-
 .title-search {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  background-color: lightgrey;
+  background-color: rgba(62, 62, 62, 0.7);
+  border-radius: 1em;
   width: 20em;
+  color: white;
+  padding-bottom: 1.3em;
 }
 
 .name, h3, p {
@@ -26,6 +24,9 @@
   flex-wrap: wrap;
   height: 100vh;
   overflow: scroll;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: .5em;
+  margin: 2em;
 }
 
 .characters-header {
@@ -35,4 +36,42 @@
 
 h1 {
   margin: .5em;
+}
+
+.bg-img {
+  object-fit: cover;
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 50%;
+}
+
+.player-header {
+  background-color: #1E1E24;
+  color: white;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.input{
+  border-radius: 0.5em;
+  border: none;
+  padding: 0.4em;
+  width: 16em;
+  margin: .5em;
+}
+
+.search-input {
+  padding-inline: 0px;
+}
+
+.unknown-selection {
+  background-color: #1E1E24;
+  color: white;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  padding: .4em;
 }
