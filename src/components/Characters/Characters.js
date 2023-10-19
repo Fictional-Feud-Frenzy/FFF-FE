@@ -63,7 +63,7 @@ return(
       <div className="title-search">
         {player1.image&&player2.image?
         <Link to="/battle-mode">
-          <button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
+          <button className="fight-button" onClick={()=>{displayFight()}}>FIGHT!!!</button>
         </Link>
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>

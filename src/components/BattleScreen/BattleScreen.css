@@ -21,8 +21,16 @@
   margin: 0;
 }
 .fight-button {
-    font-size: 2em;
-    background: black;
-    color: white;
-    border-radius: 0.5em;
+  font-size: 2em;
+  background: #f91900;
+  color: white;
+  border-radius: 0.5em;
+  border: none;
+  padding: 0.18em;
+  transition: .3s;
+}
+
+.fight-button:hover {
+  padding: .18em .4em .18em .4em;
+  transition: .3s;
 }
