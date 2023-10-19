@@ -118,7 +118,7 @@ function App() {
           setAlignment={setAlignment} filterCharactersByNamePublisherAlignment={filterCharactersByNamePublisherAlignment}
           characters={characters} userInput={userInput} setUserInput={setUserInput} clear={clear}
           selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} setCharacters={setCharacters} />} />
-        <Route path="/:id" element={<CharacterInfo character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
+        <Route path="/:id" element={<CharacterInfo setCharacter={setCharacter} character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
         <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />
       </Routes>
       </div>
