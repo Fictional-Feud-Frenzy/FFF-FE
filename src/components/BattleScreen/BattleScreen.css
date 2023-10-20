@@ -1,11 +1,28 @@
+.battle-screen {
+  margin-top: 3em;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .battle-images {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  background-color: rgb(255, 255, 255, .5);
+  width: 80vw;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .battle-image {
-  height: 25vw;
-  width: 25vw;
+  height: 30vw;
+  border-radius: 2em;
+}
+
+.fight-results {
+  display: flex;
+  align-items: center;
 }
 
 .bang {
@@ -33,4 +50,31 @@
 .fight-button:hover {
   padding: .18em .4em .18em .4em;
   transition: .3s;
+}
+
+.return-button {
+  margin-top: 2em;
+  font-size: 1.5em;
+  padding: 0.7em;
+  border: none;
+  border-radius: 1em;
+  color: white;
+  background-color: #1E1E24;
+  transition: .7s;
+}
+
+.return-button:hover {
+  background-color: white;
+  color: #1E1E24;
+  transition: .7s;
+}
+
+.battle-bg-image {
+  opacity: 100%;
+}
+
+.declared-winner {
+  background-color: rgb(255, 255, 255);
+  padding: 1em;
+  border-radius: 1em;
 }

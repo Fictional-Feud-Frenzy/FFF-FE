@@ -16,12 +16,12 @@
   font-size: 500%;
   border-radius: 30px;
   padding: 2em 1.5em 2em 1.5em;
-  transition: 1.2s;
+  transition: .7s;
 }
 
 .characters-button:hover {
   padding: 2.1em 1.6em 2.1em 1.6em;
-  transition: 1.2s;
+  transition: .7s;
 }
 
 .bg-vid {
