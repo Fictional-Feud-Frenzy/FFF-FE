@@ -43,7 +43,7 @@ export default function CharacterInfo({setCharacter, character, selectPlayer1, s
   setCharacter(data.character)
 return (
   <div className="character-info">
-    <img className="bg-img bg-img-info" src="https://get.wallhere.com/photo/night-Batman-cave-midnight-comic-art-Bat-Cave-stage-theatre-darkness-screenshot-nightclub-music-venue-scenographer-195499.jpg" ></img>
+    <img className="bg-img bg-img-info" src="https://get.wallhere.com/photo/night-Batman-cave-midnight-comic-art-Bat-Cave-stage-theatre-darkness-screenshot-nightclub-music-venue-scenographer-195499.jpg" alt="batcave background"></img>
     <div className="content-container">
 
     <div className="character-header">

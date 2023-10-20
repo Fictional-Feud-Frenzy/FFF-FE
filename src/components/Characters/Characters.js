@@ -52,7 +52,7 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
   if (error) return 'Error';
 return(
   <div className="characters">
-    <img className="bg-img" src="https://www.therange.co.uk/media/3/2/1655910356_7164.jpg" ></img>
+    <img className="bg-img" src="https://www.therange.co.uk/media/3/2/1655910356_7164.jpg" alt="comic panel background"></img>
     <div className="characters-header content-container">
       {player1.image !== undefined?
       <div className="player-header">
