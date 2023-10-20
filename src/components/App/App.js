@@ -42,15 +42,19 @@ function App() {
   }
 
   function displayWinner(){
-    if(player1.powerStatsWeightedAverage > player2.powerStatsWeightedAverage){
-      setWinner(`${player1.name} wins!`)
-    }else if(player1.powerStatsWeightedAverage < player2.powerStatsWeightedAverage){
-      setWinner(`${player2.name} wins!`)
-    }else{
-      setWinner("It's a tie!")
-    }
+    setWinner("");
+    setTimeout(() =>{
+      if(player1.powerStatsWeightedAverage > player2.powerStatsWeightedAverage){
+        setWinner(`${player1.name} wins!`)
+      }else if(player1.powerStatsWeightedAverage < player2.powerStatsWeightedAverage){
+        setWinner(`${player2.name} wins!`)
+      }else{
+        setWinner("It's a tie!")
+      }
+    return
+  }, 3000)
   }
-  
+
   function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment){
     let filteredCharacters = data.characters.filter(character=> {
 
