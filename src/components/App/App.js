@@ -5,10 +5,11 @@ import Characters from "../Characters/Characters"
 import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import BattleScreen from '../BattleScreen/BattleScreen';
 import LandingPage from '../LandingPage/LandingPage';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { testCharacters } from './testData'
 import { ApolloProvider } from '@apollo/client'
 import client from "../../ApolloClient/client";
+import ffflogo from "../../assets/ffflogo.png";
 
 function App() {
   const [characters, setCharacters] = useState(testCharacters);
@@ -41,15 +42,19 @@ function App() {
   }
 
   function displayWinner(){
-    if(player1.strength > player2.strength){
-      setWinner(`${player1.name} wins!`)
-    }else if(player1.strength < player2.strength){
-      setWinner(`${player2.name} wins!`)
-    }else{
-      setWinner("It's a tie!")
-    }
+    setWinner("");
+    setTimeout(() =>{
+      if(player1.powerStatsWeightedAverage > player2.powerStatsWeightedAverage){
+        setWinner(`${player1.name} wins!`)
+      }else if(player1.powerStatsWeightedAverage < player2.powerStatsWeightedAverage){
+        setWinner(`${player2.name} wins!`)
+      }else{
+        setWinner("It's a tie!")
+      }
+    return
+  }, 3000)
   }
-  
+
   function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment){
     let filteredCharacters = data.characters.filter(character=> {
 
@@ -110,7 +115,9 @@ function App() {
       <ApolloProvider client = {client}>
       <div className="App">
         <div className="Header">
-          <h1>Fictional Feud Frenzy</h1>
+          <Link to="/">
+            <img className="logo" src={ffflogo} alt="fff-logo"/>
+          </Link>
         </div>
         <Routes>
         <Route path="/" element={<LandingPage />} />

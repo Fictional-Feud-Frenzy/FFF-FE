@@ -1,6 +1,16 @@
 .App {
   text-align: center;
 }
+
 * {
-  border: 2px solid red;
+  font-family: 'Cabin', sans-serif;
+}
+
+.logo {
+  height: 10em;
+}
+
+.Header {
+  position: relative;
+  z-index: 1;
 }

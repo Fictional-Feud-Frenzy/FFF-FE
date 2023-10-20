@@ -52,21 +52,22 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
   if (error) return 'Error';
 return(
   <div className="characters">
-    <div className="characters-header">
+    <img className="bg-img" src="https://www.therange.co.uk/media/3/2/1655910356_7164.jpg" alt="comic panel background"></img>
+    <div className="characters-header content-container">
       {player1.image !== undefined?
-      <div>
+      <div className="player-header">
         <p>Player 1:</p>
         <img className="character-image-header" src={player1.image} alt={player1.name} />
         <p>{player1.name}</p>
-      </div>:<p>Please Select Player #1!!!</p>}
+      </div>:<h2 className="unknown-selection" >Please Select<br/>Player #1</h2>}
       <div className="title-search">
         {player1.image&&player2.image?
         <Link to="/battle-mode">
-          <button className="fight-button" onClick={()=>{displayFight()}}>Fight!!!</button>
+          <button className="fight-button" onClick={()=>{displayFight()}}>FIGHT!!!</button>
         </Link>
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
-        <select name="publisher-dropdown" id="Publisher" label="choose" onChange={event =>{
+        <select className="input" name="publisher-dropdown" id="Publisher" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment)
           setPublisher(event.target.value)
         }}>
@@ -81,7 +82,7 @@ return(
           <option value="other">Other</option>
         </select>
         <h3>Hero or Villian?</h3>
-        <select name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
+        <select className="input" name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value)
           setAlignment(event.target.value)
         }}>
@@ -91,19 +92,19 @@ return(
           <option value="other">Neutral</option>
         </select>
         <h3>Search By Name:</h3>
-        <input type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
+        <input className="input search-input" type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, event.target.value, publisher, alignment)
           setUserInput(event.target.value)
           }}/>
       </div>
       {player2.image !== undefined?
-      <div>
+      <div className="player-header">
         <p>Player 2:</p>
         <img className="character-image-header" src={player2.image} alt={player2.name} />
         <p>{player2.name}</p>
-      </div>:<p>Please Select Player #2!!!</p>}
+      </div>:<h2 className="unknown-selection" >Please Select<br/>Player #2</h2>}
     </div>
-    <div className="characters-list">
+    <div className="characters-list content-container">
       {displayedCharacters.length?displayedCharacters:<p>No characters found, please try a different search.</p>}
     </div>
   </div>

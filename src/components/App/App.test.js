@@ -7,6 +7,6 @@ test('renders Fictional Feud Frenzy title', () => {
   <MemoryRouter>
     <App />
   </MemoryRouter>);
-  const fictionalFeudFrenzy = screen.getByText(/Fictional Feud Frenzy/i);
-  expect(fictionalFeudFrenzy).toBeInTheDocument();
+  const ViewCharacters = screen.getByText(/View Characters/i);
+  expect(ViewCharacters).toBeInTheDocument();
 });

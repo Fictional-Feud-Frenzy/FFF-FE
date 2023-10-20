@@ -1,5 +1,41 @@
+.character-card{
+  border: 1px solid;
+  height: 18em;
+  width: 13em;
+  background-color: #1E1E24;
+  border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: rgb(131, 129, 129, .0);
+}
 
-.character-images {
-  height:100;
-  width:100px
+.character-card-link {
+  text-decoration: none;
+  background-color: rgb(131, 129, 129, .0);
+}
+
+.character-images, .character-image-header {
+  border-radius: 15px;
+  height: 14em;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.character-images:hover {
+  height: 15em;
+  transition: 0.3s;
+}
+
+.name {
+  background-color: #1E1E24;
+  color: white;
+  padding: .2em .5em .4em .5em;
+  border-radius: 15px;
+}
+
+.character-card:hover {
+  background-color: #92140C;
+  transition: 0.3s;
 }
