@@ -105,7 +105,7 @@ return(
       </div>:<h2 className="unknown-selection" >Please Select<br/>Player #2</h2>}
     </div>
     <div className="characters-list content-container">
-      {displayedCharacters.length?displayedCharacters:<p>No characters found, please try a different search.</p>}
+      {displayedCharacters.length?displayedCharacters:<p className="white" >No characters found, please try a different search.</p>}
     </div>
   </div>
 );

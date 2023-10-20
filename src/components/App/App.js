@@ -56,58 +56,40 @@ function App() {
   }
 
   function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment){
-    let filteredCharacters = data.characters.filter(character=> {
+    let filteredCharacters = data.characters
 
-      if((publisher==='all' && alignment==='all' && character.name.toLowerCase().includes(userInput.toLowerCase()))
-      || (publisher==='all' && alignment==='all' && character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-    ) {return character }
-    
-    if(
-      (publisher === character.publisher && alignment==='all' && character.name.toLowerCase().includes(userInput.toLowerCase()))
-      || (publisher === character.publisher && alignment==='all' && character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-      || (publisher === 'all' && alignment===character.alignment && character.name.toLowerCase().includes(userInput.toLowerCase()))
-      || (publisher === 'all' && alignment===character.alignment && character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-      || (publisher === character.publisher && alignment===character.alignment && character.name.toLowerCase().includes(userInput.toLowerCase()))
-      || (publisher === character.publisher && alignment===character.alignment && character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-      ){ return character } 
-    
-      if(
-        (publisher === 'other' && alignment===character.alignment && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
+    function sortCharactersByPublisher(filteredCharacters){
+      return filteredCharacters.filter(character=>{
+        if(publisher === 'all') { return character }
+        if(publisher===character.publisher){ return character }
+        if (publisher === 'other' && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
         && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes'
-        && character.name.toLowerCase().includes(userInput.toLowerCase()))
-        || (publisher === 'other' && alignment===character.alignment && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes' && 
-        character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-        || (publisher === character.publisher && alignment==='other' && character.alignment !=='good' && character.alignment !=='bad'&& character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes'
-        && character.name.toLowerCase().includes(userInput.toLowerCase()))
-        || (publisher === character.publisher && alignment==='other' && character.alignment !=='good' && character.alignment !=='bad'&& character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes' && 
-        character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-        ||
-        (publisher === 'other' && alignment==='all' && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes'
-        && character.name.toLowerCase().includes(userInput.toLowerCase()))
-        || (publisher === 'other' && alignment==='all' && character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes' && 
-        character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-        || (publisher === 'all' && alignment==='other' && character.alignment !=='good' && character.alignment !=='bad'&& character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes'
-        && character.name.toLowerCase().includes(userInput.toLowerCase()))
-        || (publisher === 'all' && alignment==='other' && character.alignment !=='good' && character.alignment !=='bad'&& character.publisher !== 'Marvel Comics' && character.publisher !== 'DC Comics'
-        && character.publisher !== 'Dark Horse Comics' && character.publisher !== 'George Lucas'
-        && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes' && 
-        character.fullName.toLowerCase().includes(userInput.toLowerCase()))
-        ){ return character }
+           && character.publisher !== 'Star Trek' && character.publisher !== 'SyFy' && character.publisher !== 'NBC - Heroes')
+           { return character}
         return false
-      } )
+      })
+    }
+    filteredCharacters = sortCharactersByPublisher(filteredCharacters)
+
+    function sortCharactersByAlignment(filteredCharacters){
+      return filteredCharacters.filter(character=>{
+        if(alignment === 'all') { return character }
+        if(alignment===character.alignment){ return character }
+        if (alignment === 'other' && character.alignment !== 'good' && character.alignment !== 'bad')
+           { return character}
+        return false
+      })
+    }
+    filteredCharacters = sortCharactersByAlignment(filteredCharacters)
+
+    function sortCharactersByName(filteredCharacters){
+      return filteredCharacters.filter(character=>
+        character.name.toLowerCase().includes(userInput.toLowerCase()) 
+        || character.fullName.toLowerCase().includes(userInput.toLowerCase())
+      )
+    }
+    filteredCharacters = sortCharactersByName(filteredCharacters)
+    
       setCharacters(filteredCharacters)
     }
     
