@@ -17,8 +17,16 @@
 
 .battle-image {
   height: 30vw;
+  max-height: 25em;
   border-radius: 2em;
-  animation: shake 3s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.fighting{
+  margin-top: -14em;
+}
+
+.shake {
+  animation: shake 1s infinite cubic-bezier(.36,.07,.19,.97) both;
 }
 
 @keyframes shake {
@@ -67,7 +75,7 @@
   margin-top: 2em;
   font-size: 1.5em;
   padding: 0.7em;
-  border: none;
+  border: 2px solid white;
   border-radius: 1em;
   color: white;
   background-color: #1E1E24;
@@ -88,6 +96,12 @@
   background-color: rgb(255, 255, 255);
   padding: 1em;
   border-radius: 1em;
+}
+
+.description{
+  height: 40vh;
+  width: 25vw;
+  overflow:scroll;
 }
 
 .bang {

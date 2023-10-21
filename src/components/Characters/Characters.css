@@ -75,3 +75,8 @@ h1 {
   align-items: center;
   padding: .4em;
 }
+
+.white{
+  color:white;
+  font-size: 2em;
+}

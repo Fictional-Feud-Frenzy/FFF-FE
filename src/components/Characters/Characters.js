@@ -22,10 +22,10 @@ query characters {
 }
 `;
 
-export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment,
+export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment, attribute, setAttribute,
    filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight, clear}){
      const {data, loading, error} = useQuery(GET_CHARACTERS);
-    if(!userInput && publisher==='all' && alignment==='all'){setCharacters(data ? data.characters : characters)}
+    if(!userInput && publisher==='all' && alignment==='all' && attribute === 'any'){setCharacters(data ? data.characters : characters)}
     let displayedCharacters = characters.map(({
       id,
       name,
@@ -63,12 +63,12 @@ return(
       <div className="title-search">
         {player1.image&&player2.image?
         <Link to="/battle-mode">
-          <button className="fight-button" onClick={()=>{displayFight()}}>FIGHT!!!</button>
+          <button className="fight-button">FIGHT!!!</button>
         </Link>
         :<h2>Choose Your Characters!</h2>} 
         <h3>Choose Publisher:</h3>
         <select className="input" name="publisher-dropdown" id="Publisher" label="choose" onChange={event =>{
-          filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment)
+          filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment, attribute)
           setPublisher(event.target.value)
         }}>
           <option value="all">ALL Publishers</option>
@@ -83,13 +83,26 @@ return(
         </select>
         <h3>Hero or Villian?</h3>
         <select className="input" name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
-          filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value)
+          filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value, attribute)
           setAlignment(event.target.value)
         }}>
           <option value="all">ALL Characters</option>
           <option value="good">Hero</option>
           <option value="bad">Villian</option>
           <option value="other">Neutral</option>
+        </select>
+        <h3>Highest Attribute:</h3>
+        <select className="input" name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
+          filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment, event.target.value)
+          setAttribute(event.target.value)
+        }}>
+          <option value="any">Any Attribute</option>
+          <option value="intelligence">Intelligence</option>
+          <option value="strength">Strength</option>
+          <option value="speed">Speed</option>
+          <option value="durability">Durability</option>
+          <option value="power">Power</option>
+          <option value="combat">Combat</option>
         </select>
         <h3>Search By Name:</h3>
         <input className="input search-input" type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
@@ -105,7 +118,7 @@ return(
       </div>:<h2 className="unknown-selection" >Please Select<br/>Player #2</h2>}
     </div>
     <div className="characters-list content-container">
-      {displayedCharacters.length?displayedCharacters:<p>No characters found, please try a different search.</p>}
+      {displayedCharacters.length?displayedCharacters:<p className="white" >No characters found, please try a different search.</p>}
     </div>
   </div>
 );
