@@ -1,0 +1,30 @@
+{ "data":
+  {
+  "character": {
+      "__typename": "Character",
+      "id": "2",
+      "name": "Abe Sapien",
+      "intelligence": 88,
+      "strength": 28,
+      "speed": 35,
+      "durability": 65,
+      "power": 100,
+      "combat": 85,
+      "fullName": "Abraham Sapien",
+      "placeOfBirth": "-",
+      "publisher": "Dark Horse Comics",
+      "alignment": "good",
+      "gender": "Male",
+      "race": "Icthyo Sapien",
+      "height": "6'3",
+      "weight": "145 lb",
+      "eyeColor": "Blue",
+      "hairColor": "No Hair",
+      "groupAffiliation": "Bureau for Paranormal Research and Defense",
+      "image": "https://www.superherodb.com/pictures2/portraits/10/100/956.jpg",
+      "powerStatsWeightedAverage": 65
+  }
+  },
+"loading": false,
+"error": false
+}
