@@ -45,9 +45,11 @@ function BattleScreen({player1, player2}){
       setDescription(data.createBattle.description)
     }
   }, [data]);
-  
+  let i = 0
   useEffect(() => {
-      createBattle();
+      if(i%2 === 1){
+        createBattle()
+      };
     },[createBattle]);
 
     if (error) return `Error! ${error}`;
