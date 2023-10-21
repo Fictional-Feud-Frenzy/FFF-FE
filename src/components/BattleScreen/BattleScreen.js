@@ -47,7 +47,7 @@ function BattleScreen({player1, player2}){
   
   useEffect(() => {
       createBattle();
-    }, [player1]);
+    },[createBattle]);
     
     // if (loading) return 'Loading...';
     if (error) return `Error! ${error}`;
