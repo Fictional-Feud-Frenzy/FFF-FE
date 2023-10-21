@@ -2,6 +2,7 @@ import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
 import { Link } from "react-router-dom"
 import { useQuery, gql } from "@apollo/client"
+import PropTypes from 'prop-types';
 
 const GET_CHARACTERS = gql`
 query characters {
@@ -121,4 +122,63 @@ return(
     </div>
   </div>
 );
+}
+
+Characters.propTypes = {
+  userInput: PropTypes.string.isRequired,
+  setUserInput: PropTypes.func.isRequired, 
+  setPublisher: PropTypes.func.isRequired, 
+  publisher: PropTypes.string.isRequired, 
+  setAlignment: PropTypes.func.isRequired, 
+  alignment: PropTypes.string.isRequired, 
+  attribute: PropTypes.string.isRequired, 
+  setAttribute: PropTypes.func.isRequired,
+  filterCharactersByNamePublisherAlignment: PropTypes.func.isRequired, 
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      intelligence: PropTypes.number.isRequired,
+      strength: PropTypes.number.isRequired,
+      speed: PropTypes.number.isRequired,
+      durability: PropTypes.number.isRequired,
+      power: PropTypes.number.isRequired,
+      combat: PropTypes.number.isRequired,
+      fullName: PropTypes.string.isRequired,
+      publisher: PropTypes.string.isRequired,
+      alignment: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired, 
+  setCharacters: PropTypes.func.isRequired, 
+  selectCharacter: PropTypes.func.isRequired, 
+  player1: PropTypes.PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired, 
+  player2: PropTypes.PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired, 
+  clear: PropTypes.func.isRequired
 }

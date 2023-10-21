@@ -28,6 +28,13 @@ function App() {
     setUserInput("")
   }
 
+  // function getNorrisJoke(){
+  //   fetch('https://api.chucknorris.io/jokes/search?query=character')
+  //     .then(res=>res.json())
+  //     .then(data=>console.log(data.result[0].value))
+  // }
+  // getNorrisJoke()
+
   function selectCharacter(newCharacter){
     setCharacter(newCharacter)
   }
