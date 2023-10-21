@@ -5,7 +5,7 @@ function LandingPage() {
   return (
     <div className="fullscreen-bg">
       <img className="bg-vid" src="https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg" alt="skyscrapers"></img>
-      <div className="content-container">
+      <div className="landing-container content-container">
         <div className="intro-container">
           <p className="intro">Join us in the ultimate battleground, where a roster of over 500 comic book legends collide in epic showdowns!
           <br/><br/>Our AI technology generates captivating comic book short stories for each battle, ensuring a unique experience every time. Will it be an epic showdown, a cunning strategy, or an unexpected twist that decides the victor? Find out in every pulse-pounding tale!
