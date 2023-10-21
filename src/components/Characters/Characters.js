@@ -47,7 +47,7 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
     />
     )
 })
-
+console.log(data)
   if (loading) return 'Loading...';
   if (error) return 'Error';
 return(
