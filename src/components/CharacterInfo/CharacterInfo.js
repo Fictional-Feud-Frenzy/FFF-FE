@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useQuery, gql } from "@apollo/client"
 import {useParams} from 'react-router-dom'
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+// import { sampleCharacter } from './sampleCharacter';
 
 const GET_CHARACTER = gql`
   query Character($id: ID!) {
@@ -37,9 +39,12 @@ export default function CharacterInfo({setCharacter, character, selectPlayer1, s
   const {data, loading, error} = useQuery(GET_CHARACTER, {
     variables: { id },
   });
+  useEffect(()=>{
+    setCharacter(data?data.character:character)
+  },[data])
   if (loading) return null;
   if (error) return `Error! ${error}`;
-  setCharacter(data.character)
+
 return (
   <div className="character-info">
     <img className="bg-img bg-img-info" src="https://get.wallhere.com/photo/night-Batman-cave-midnight-comic-art-Bat-Cave-stage-theatre-darkness-screenshot-nightclub-music-venue-scenographer-195499.jpg" alt="batcave background"></img>

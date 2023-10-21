@@ -3,6 +3,7 @@ import "./Characters.css"
 import { Link } from "react-router-dom"
 import { useQuery, gql } from "@apollo/client"
 import PropTypes from 'prop-types';
+import { useEffect } from "react";
 
 const GET_CHARACTERS = gql`
 query characters {
@@ -26,7 +27,9 @@ query characters {
 export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment, attribute, setAttribute,
    filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, clear}){
      const {data, loading, error} = useQuery(GET_CHARACTERS);
-    if(!userInput && publisher==='all' && alignment==='all' && attribute === 'any'){setCharacters(data ? data.characters : characters)}
+   useEffect(()=>{
+    setCharacters(data?data.characters:characters)
+   },[data])
     let displayedCharacters = characters.map(({
       id,
       name,
