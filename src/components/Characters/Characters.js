@@ -65,8 +65,8 @@ return(
         <Link to="/battle-mode">
           <button className="fight-button">FIGHT!!!</button>
         </Link>
-        :<h2>Choose Your Characters!</h2>} 
-        <h3>Choose Publisher:</h3>
+        :<h2 className = "input-text">Choose Your Characters!</h2>} 
+        <h3 className = "input-text">Choose Publisher:</h3>
         <select className="input" name="publisher-dropdown" id="Publisher" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment, attribute)
           setPublisher(event.target.value)
@@ -81,7 +81,7 @@ return(
           <option value="NBC - Heroes">NBC - Heroes</option>
           <option value="other">Other</option>
         </select>
-        <h3>Hero or Villian?</h3>
+        <h3 className = "input-text" >Hero or Villian?</h3>
         <select className="input" name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, publisher, event.target.value, attribute)
           setAlignment(event.target.value)
@@ -91,7 +91,7 @@ return(
           <option value="bad">Villian</option>
           <option value="other">Neutral</option>
         </select>
-        <h3>Highest Attribute:</h3>
+        <h3 className = "input-text" >Highest Attribute:</h3>
         <select className="input" name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment, event.target.value)
           setAttribute(event.target.value)
@@ -104,7 +104,7 @@ return(
           <option value="power">Power</option>
           <option value="combat">Combat</option>
         </select>
-        <h3>Search By Name:</h3>
+        <h3 className = "input-text" >Search By Name:</h3>
         <input className="input search-input" type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, event.target.value, publisher, alignment)
           setUserInput(event.target.value)
