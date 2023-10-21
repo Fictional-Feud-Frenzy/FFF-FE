@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './BattleScreen.css';
 import { useMutation, gql } from '@apollo/client';
 import { useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 
 
 const GET_BATTLE = gql`
@@ -91,3 +92,38 @@ function BattleScreen({player1, player2}){
 }
 
 export default BattleScreen
+
+BattleScreen.propTypes = {
+  player1: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+    placeOfBirth: PropTypes.string,
+    powerStatsWeightedAverage: PropTypes.number,
+  }),
+  player2: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+    placeOfBirth: PropTypes.string,
+    powerStatsWeightedAverage: PropTypes.number,
+  })
+}

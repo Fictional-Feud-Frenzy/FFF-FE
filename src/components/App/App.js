@@ -10,10 +10,11 @@ import { testCharacters } from './testData'
 import { ApolloProvider } from '@apollo/client'
 import client from "../../ApolloClient/client";
 import ffflogo from "../../assets/ffflogo.png";
+import { sampleCharacter } from '../CharacterInfo/sampleCharacter';
 
 function App() {
   const [characters, setCharacters] = useState(testCharacters);
-  const [character, setCharacter] = useState({})
+  const [character, setCharacter] = useState(sampleCharacter)
   const [player1, setPlayer1] = useState({})
   const [player2, setPlayer2] = useState({})
   const [publisher, setPublisher] = useState("all")
@@ -27,6 +28,13 @@ function App() {
     setAttribute("any")
     setUserInput("")
   }
+
+  // function getNorrisJoke(){
+  //   fetch('https://api.chucknorris.io/jokes/search?query=character')
+  //     .then(res=>res.json())
+  //     .then(data=>console.log(data.result[0].value))
+  // }
+  // getNorrisJoke()
 
   function selectCharacter(newCharacter){
     setCharacter(newCharacter)
@@ -103,7 +111,7 @@ function App() {
     }
     
     return (
-      <ApolloProvider client = {client}>
+    <ApolloProvider client = {client}>
       <div className="App">
         <div className="Header">
           <Link to="/">
@@ -111,15 +119,15 @@ function App() {
           </Link>
         </div>
         <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/characters" element={<Characters publisher={publisher} setPublisher={setPublisher} 
-          alignment={alignment}setAlignment={setAlignment} attribute={attribute} setAttribute={setAttribute}
-          filterCharactersByNamePublisherAlignment={filterCharactersByNamePublisherAlignment}
-          characters={characters} userInput={userInput} setUserInput={setUserInput} clear={clear}
-          selectCharacter={selectCharacter} player1={player1} player2={player2} setCharacters={setCharacters} />} />
-        <Route path="/:id" element={<CharacterInfo setCharacter={setCharacter} character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
-        <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2}/>} />
-      </Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/characters" element={<Characters publisher={publisher} setPublisher={setPublisher} 
+            alignment={alignment}setAlignment={setAlignment} attribute={attribute} setAttribute={setAttribute}
+            filterCharactersByNamePublisherAlignment={filterCharactersByNamePublisherAlignment}
+            characters={characters} userInput={userInput} setUserInput={setUserInput} clear={clear}
+            selectCharacter={selectCharacter} player1={player1} player2={player2} setCharacters={setCharacters} />} />
+          <Route path="/:id" element={<CharacterInfo setCharacter={setCharacter} character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
+          <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2}/>} />
+        </Routes>
       </div>
     </ApolloProvider>
   );
