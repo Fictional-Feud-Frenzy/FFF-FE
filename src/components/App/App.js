@@ -65,7 +65,6 @@ function App() {
   // }
 
   function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment, attribute){
-    // if(!userInput && publisher==='all' && alignment==='all' && attribute === 'any'){setCharacters(data ? data.characters : characters)}
     let filteredCharacters = data.characters
 
     function sortCharactersByPublisher(filteredCharacters){
