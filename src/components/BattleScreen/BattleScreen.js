@@ -108,8 +108,6 @@ BattleScreen.propTypes = {
     alignment: PropTypes.string,
     image: PropTypes.string,
     placeOfBirth: PropTypes.string,
-    alignment: PropTypes.string,
-    image: PropTypes.string,
     powerStatsWeightedAverage: PropTypes.number,
   }),
   player2: PropTypes.shape({
@@ -126,8 +124,6 @@ BattleScreen.propTypes = {
     alignment: PropTypes.string,
     image: PropTypes.string,
     placeOfBirth: PropTypes.string,
-    alignment: PropTypes.string,
-    image: PropTypes.string,
     powerStatsWeightedAverage: PropTypes.number,
   })
 }

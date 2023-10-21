@@ -107,8 +107,6 @@ CharacterInfo.propTypes = {
     alignment: PropTypes.string,
     image: PropTypes.string,
     placeOfBirth: PropTypes.string,
-    alignment: PropTypes.string,
-    image: PropTypes.string,
     powerStatsWeightedAverage: PropTypes.number,
   }).isRequired, 
   selectPlayer1: PropTypes.func.isRequired, 
