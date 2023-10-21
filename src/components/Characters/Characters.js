@@ -23,7 +23,7 @@ query characters {
 `;
 
 export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment, attribute, setAttribute,
-   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight, clear}){
+   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, clear}){
      const {data, loading, error} = useQuery(GET_CHARACTERS);
     if(!userInput && publisher==='all' && alignment==='all' && attribute === 'any'){setCharacters(data ? data.characters : characters)}
     let displayedCharacters = characters.map(({
