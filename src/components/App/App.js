@@ -16,14 +16,15 @@ function App() {
   const [character, setCharacter] = useState({})
   const [player1, setPlayer1] = useState({})
   const [player2, setPlayer2] = useState({})
-  const [winner, setWinner] = useState("")
   const [publisher, setPublisher] = useState("all")
   const [alignment, setAlignment] = useState("all")
+  const [attribute, setAttribute] = useState("any")
   const [userInput, setUserInput] = useState('')
 
   function clear(){
     setPublisher("all")
     setAlignment("all")
+    setAttribute("any")
     setUserInput("")
   }
 
@@ -41,21 +42,21 @@ function App() {
     setPlayer2(input)
   }
 
-  function displayWinner(){
-    setWinner("");
-    setTimeout(() =>{
-      if(player1.powerStatsWeightedAverage > player2.powerStatsWeightedAverage){
-        setWinner(`${player1.name} wins!`)
-      }else if(player1.powerStatsWeightedAverage < player2.powerStatsWeightedAverage){
-        setWinner(`${player2.name} wins!`)
-      }else{
-        setWinner("It's a tie!")
-      }
-    return
-  }, 3000)
-  }
+  // function displayFight(){
+    // setWinner("");
+  //   setTimeout(() =>{
+  //     if(player1.powerStatsWeightedAverage > player2.powerStatsWeightedAverage){
+  //       setWinner(`${player1.name} wins!`)
+  //     }else if(player1.powerStatsWeightedAverage < player2.powerStatsWeightedAverage){
+  //       setWinner(`${player2.name} wins!`)
+  //     }else{
+  //       setWinner("It's a tie!")
+  //     }
+  //   return
+  // }, 3000)
+  // }
 
-  function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment){
+  function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment, attribute){
     let filteredCharacters = data.characters
 
     function sortCharactersByPublisher(filteredCharacters){
@@ -82,13 +83,22 @@ function App() {
     }
     filteredCharacters = sortCharactersByAlignment(filteredCharacters)
 
-    function sortCharactersByName(filteredCharacters){
+    function filterCharactersByName(filteredCharacters){
       return filteredCharacters.filter(character=>
         character.name.toLowerCase().includes(userInput.toLowerCase()) 
         || character.fullName.toLowerCase().includes(userInput.toLowerCase())
       )
     }
-    filteredCharacters = sortCharactersByName(filteredCharacters)
+    filteredCharacters = filterCharactersByName(filteredCharacters)
+
+    function sortCharactersByAttribute(filteredCharacters){
+      if (attribute==='any'){
+          return filteredCharacters
+        } 
+        let sortedCharacters = filteredCharacters.sort((a, b) => b[attribute] - a[attribute])
+        return sortedCharacters
+    }
+    filteredCharacters = sortCharactersByAttribute(filteredCharacters)
     
       setCharacters(filteredCharacters)
     }
@@ -103,12 +113,13 @@ function App() {
         </div>
         <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/characters" element={<Characters publisher={publisher} setPublisher={setPublisher} alignment={alignment}
-          setAlignment={setAlignment} filterCharactersByNamePublisherAlignment={filterCharactersByNamePublisherAlignment}
+        <Route path="/characters" element={<Characters publisher={publisher} setPublisher={setPublisher} 
+          alignment={alignment}setAlignment={setAlignment} attribute={attribute} setAttribute={setAttribute}
+          filterCharactersByNamePublisherAlignment={filterCharactersByNamePublisherAlignment}
           characters={characters} userInput={userInput} setUserInput={setUserInput} clear={clear}
-          selectCharacter={selectCharacter} player1={player1} player2={player2} displayFight={displayWinner} setCharacters={setCharacters} />} />
+          selectCharacter={selectCharacter} player1={player1} player2={player2} setCharacters={setCharacters} />} />
         <Route path="/:id" element={<CharacterInfo setCharacter={setCharacter} character={character} selectPlayer1={selectPlayer1} selectPlayer2={selectPlayer2}/>} />
-        <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2} winner={winner} />} />
+        <Route path="/battle-mode" element={<BattleScreen player1={player1} player2={player2}/>} />
       </Routes>
       </div>
     </ApolloProvider>

@@ -33,13 +33,11 @@ const GET_CHARACTER = gql`
 
 export default function CharacterInfo({setCharacter, character, selectPlayer1, selectPlayer2}){
   let id = useParams().id
-  // console.log(useParams().id)
   const {data, loading, error} = useQuery(GET_CHARACTER, {
     variables: { id },
   });
   if (loading) return null;
   if (error) return `Error! ${error}`;
-  console.log(data.character)
   setCharacter(data.character)
 return (
   <div className="character-info">
