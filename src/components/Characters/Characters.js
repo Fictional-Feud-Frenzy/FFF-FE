@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useQuery, gql } from "@apollo/client"
 import PropTypes from 'prop-types';
 import { useEffect } from "react";
+import { testCharacters } from './testData'
 
 const GET_CHARACTERS = gql`
 query characters {
@@ -28,7 +29,7 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
    filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, clear}){
      const {data, loading, error} = useQuery(GET_CHARACTERS);
    useEffect(()=>{
-    setCharacters(data?data.characters:characters)
+    setCharacters(data?data.characters:testCharacters)
    },[data, setCharacters])
     let displayedCharacters = characters.map(({
       id,
