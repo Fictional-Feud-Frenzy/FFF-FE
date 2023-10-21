@@ -2,6 +2,9 @@ import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
 import { Link } from "react-router-dom"
 import { useQuery, gql } from "@apollo/client"
+import PropTypes from 'prop-types';
+import { useEffect } from "react";
+import { testCharacters } from './testData'
 
 const GET_CHARACTERS = gql`
 query characters {
@@ -23,9 +26,11 @@ query characters {
 `;
 
 export default function Characters({userInput, setUserInput, setPublisher, publisher, setAlignment, alignment, attribute, setAttribute,
-   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, displayFight, clear}){
+   filterCharactersByNamePublisherAlignment, characters, setCharacters, selectCharacter, player1, player2, clear}){
      const {data, loading, error} = useQuery(GET_CHARACTERS);
-    if(!userInput && publisher==='all' && alignment==='all' && attribute === 'any'){setCharacters(data ? data.characters : characters)}
+   useEffect(()=>{
+    setCharacters(data?data.characters:testCharacters)
+   },[data, setCharacters])
     let displayedCharacters = characters.map(({
       id,
       name,
@@ -47,7 +52,6 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
     />
     )
 })
-
   if (loading) return 'Loading...';
   if (error) return 'Error';
 return(
@@ -66,6 +70,11 @@ return(
           <button className="fight-button">FIGHT!!!</button>
         </Link>
         :<h2 className = "input-text">Choose Your Characters!</h2>} 
+        <h3>Search By Name:</h3>
+        <input className="input search-input" type="text" id="search-input" placeholder="Search Names" name="searchCharacters" onChange={event =>{
+          filterCharactersByNamePublisherAlignment(data, event.target.value, publisher, alignment, attribute)
+          setUserInput(event.target.value)
+          }}/>
         <h3 className = "input-text">Choose Publisher:</h3>
         <select className="input" name="publisher-dropdown" id="Publisher" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, event.target.value, alignment, attribute)
@@ -91,7 +100,7 @@ return(
           <option value="bad">Villian</option>
           <option value="other">Neutral</option>
         </select>
-        <h3 className = "input-text" >Highest Attribute:</h3>
+        <h3>Highest Attribute:</h3>
         <select className="input" name="alignment-dropdown" id="Alignment" label="choose" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment, event.target.value)
           setAttribute(event.target.value)
@@ -104,7 +113,7 @@ return(
           <option value="power">Power</option>
           <option value="combat">Combat</option>
         </select>
-        <h3 className = "input-text" >Search By Name:</h3>
+        <h3>Search By Name:</h3>
         <input className="input search-input" type="text" placeholder="Search Names" name="searchCharacters" onChange={event =>{
           filterCharactersByNamePublisherAlignment(data, event.target.value, publisher, alignment)
           setUserInput(event.target.value)
@@ -122,4 +131,63 @@ return(
     </div>
   </div>
 );
+}
+
+Characters.propTypes = {
+  userInput: PropTypes.string.isRequired,
+  setUserInput: PropTypes.func.isRequired, 
+  setPublisher: PropTypes.func.isRequired, 
+  publisher: PropTypes.string.isRequired, 
+  setAlignment: PropTypes.func.isRequired, 
+  alignment: PropTypes.string.isRequired, 
+  attribute: PropTypes.string.isRequired, 
+  setAttribute: PropTypes.func.isRequired,
+  filterCharactersByNamePublisherAlignment: PropTypes.func.isRequired, 
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      intelligence: PropTypes.number.isRequired,
+      strength: PropTypes.number.isRequired,
+      speed: PropTypes.number.isRequired,
+      durability: PropTypes.number.isRequired,
+      power: PropTypes.number.isRequired,
+      combat: PropTypes.number.isRequired,
+      fullName: PropTypes.string.isRequired,
+      publisher: PropTypes.string.isRequired,
+      alignment: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired, 
+  setCharacters: PropTypes.func.isRequired, 
+  selectCharacter: PropTypes.func.isRequired, 
+  player1: PropTypes.PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired, 
+  player2: PropTypes.PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired, 
+  clear: PropTypes.func.isRequired
 }

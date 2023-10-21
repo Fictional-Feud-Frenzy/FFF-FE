@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './BattleScreen.css';
 import { useMutation, gql } from '@apollo/client';
 import { useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 
 
 const GET_BATTLE = gql`
@@ -48,11 +49,9 @@ function BattleScreen({player1, player2}){
   useEffect(() => {
       createBattle();
     },[createBattle]);
-    
-    // if (loading) return 'Loading...';
+
     if (error) return `Error! ${error}`;
 
-  
   return(
     <div className="battle-screen">
       <img className="bg-vid battle-bg-image" src="https://images.pexels.com/photos/2064827/pexels-photo-2064827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="arena"></img>
@@ -93,3 +92,38 @@ function BattleScreen({player1, player2}){
 }
 
 export default BattleScreen
+
+BattleScreen.propTypes = {
+  player1: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+    placeOfBirth: PropTypes.string,
+    powerStatsWeightedAverage: PropTypes.number,
+  }),
+  player2: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+    placeOfBirth: PropTypes.string,
+    powerStatsWeightedAverage: PropTypes.number,
+  })
+}
