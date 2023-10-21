@@ -41,7 +41,7 @@ export default function CharacterInfo({setCharacter, character, selectPlayer1, s
   });
   useEffect(()=>{
     setCharacter(data?data.character:character)
-  },[data])
+  },[data, character, setCharacter])
   if (loading) return null;
   if (error) return `Error! ${error}`;
 
