@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import './BattleScreen.css';
 import { useMutation, gql } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
+
 
 const GET_BATTLE = gql`
 mutation ($character1: Int!, $character2: Int!){
@@ -21,14 +22,15 @@ mutation ($character1: Int!, $character2: Int!){
   }
 }
 `;
-  
+
 
 function BattleScreen({player1, player2}){
+
   const [winner, setWinner] = useState("")
   let [description, setDescription] = useState('')
   let playerID1 = parseInt(player1.id)
   let playerID2 = parseInt(player2.id)
-
+  
   const [createBattle, {data, loading, error}] = useMutation(GET_BATTLE, {
     variables: {
       character1: playerID1,
@@ -36,16 +38,16 @@ function BattleScreen({player1, player2}){
     },
   }); 
   useEffect(() => {
-      setWinner('')
-      if(data){ 
-        setTimeout(() =>{setWinner(data.createBattle.winner.name)}, 3000)
-        setTimeout(() =>{setDescription(data.createBattle.description)}, 3000)
-      }
-    }, [data]);
-    
-    useEffect(() => {
+    setWinner('')
+    if(data){ 
+      setWinner(data.createBattle.winner.name)
+      setDescription(data.createBattle.description)
+    }
+  }, [data]);
+  
+  useEffect(() => {
       createBattle();
-    }, []);
+    }, [player1]);
     
     // if (loading) return 'Loading...';
     if (error) return `Error! ${error}`;
@@ -66,7 +68,7 @@ function BattleScreen({player1, player2}){
           {loading?
           <div >
             <p className="bang">💥</p>
-            <p className="fighting">{player1.name} and {player2.name} are Fighting!</p>
+            <p className="fighting">{player1.name} and {player2.name} are Fighting...</p>
           </div>
             :
           <div className="declared-winner">

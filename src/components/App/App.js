@@ -99,7 +99,6 @@ function App() {
         return sortedCharacters
     }
     filteredCharacters = sortCharactersByAttribute(filteredCharacters)
-    
       setCharacters(filteredCharacters)
     }
     
