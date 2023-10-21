@@ -66,7 +66,7 @@ function BattleScreen({player1, player2}){
         </div>
         <div className="fight-results">
           {loading?
-          <div >
+          <div className="fight-animation">
             <p className="bang">💥</p>
             <p className="fighting">{player1.name} and {player2.name} are Fighting...</p>
           </div>

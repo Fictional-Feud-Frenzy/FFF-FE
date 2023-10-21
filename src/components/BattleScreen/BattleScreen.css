@@ -46,6 +46,7 @@
 .fight-results {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 
@@ -96,6 +97,9 @@
   background-color: rgb(255, 255, 255);
   padding: 1em;
   border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .description{
@@ -122,4 +126,49 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 680px) {
+  .bang {
+    font-size: 200px;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .battle-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fight-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30vh;
+  }
+
+  .bang {
+    font-size: 150px;
+    margin-top: .3em;
+  }
+
+  .fighting {
+    margin-top: 3.5em;
+  }
+
+  .battle-image {
+    border-radius: .5em;
+  }
+
+  .description {
+    width: 50vw;
+  }
+
+  .fight-results {
+    margin-bottom: .5em;
+  }
+
+  .fighter1-name .fighter2-name {
+    font-size: 100%;
+  }
 }
