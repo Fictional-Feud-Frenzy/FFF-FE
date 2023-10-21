@@ -37,3 +37,31 @@
   position: relative;
   z-index: 1;
 }
+
+@media screen and (max-width: 680px) {
+  .characters-button{
+    font-size: 300%;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .characters-button{
+    font-size: 200%;
+    padding: 5em 1.5em 5em 1.5em;
+    background-size: 180%;
+  }
+  
+  .logo {
+    height: 7em;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  .characters-button{
+    font-size: 150%;
+  }
+
+  .logo {
+    height: 5em;
+  }
+}
