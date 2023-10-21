@@ -153,7 +153,7 @@ Characters.propTypes = {
   setCharacters: PropTypes.func.isRequired, 
   selectCharacter: PropTypes.func.isRequired, 
   player1: PropTypes.PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     intelligence: PropTypes.number,
     strength: PropTypes.number,
@@ -167,7 +167,7 @@ Characters.propTypes = {
     image: PropTypes.string,
   }).isRequired, 
   player2: PropTypes.PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     intelligence: PropTypes.number,
     strength: PropTypes.number,
