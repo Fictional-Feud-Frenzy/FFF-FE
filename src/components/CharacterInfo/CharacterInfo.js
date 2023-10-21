@@ -2,6 +2,7 @@ import './CharacterInfo.css';
 import { Link } from 'react-router-dom';
 import { useQuery, gql } from "@apollo/client"
 import {useParams} from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 const GET_CHARACTER = gql`
   query Character($id: ID!) {
@@ -83,4 +84,28 @@ return (
     </div>
   </div>
 )
+}
+
+CharacterInfo.propTypes = {
+  setCharacter: PropTypes.func.isRequired, 
+  character: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    intelligence: PropTypes.number,
+    strength: PropTypes.number,
+    speed: PropTypes.number,
+    durability: PropTypes.number,
+    power: PropTypes.number,
+    combat: PropTypes.number,
+    fullName: PropTypes.string,
+    publisher: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+    placeOfBirth: PropTypes.string,
+    alignment: PropTypes.string,
+    image: PropTypes.string,
+    powerStatsWeightedAverage: PropTypes.number,
+  }).isRequired, 
+  selectPlayer1: PropTypes.func.isRequired, 
+  selectPlayer2: PropTypes.func.isRequired
 }
