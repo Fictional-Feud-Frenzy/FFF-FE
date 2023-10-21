@@ -37,3 +37,10 @@
   position: relative;
   z-index: 1;
 }
+
+.intro-container{
+  margin-left: 10vw;
+  width: 80vw;
+  background-color: hsl(0, 0%, 100%, .5);
+  border-radius: 1em;
+}
