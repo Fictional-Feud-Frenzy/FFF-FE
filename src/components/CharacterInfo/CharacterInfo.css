@@ -19,6 +19,7 @@
 .character-header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100vw;
 }
 
@@ -86,4 +87,28 @@
 
 .bg-img-info {
   opacity: 90%;
+}
+
+@media screen and (max-width: 680px) {
+  .select-character-button {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .description-container {
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+}
+
+@media screen and (max-width: 285px) {
+  .character-name {
+    font-size: 1.5em;
+  }
+
+  .select-character-button {
+    font-size: .7em;
+  }
 }

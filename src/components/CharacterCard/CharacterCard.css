@@ -39,3 +39,24 @@
   background-color: #92140C;
   transition: 0.3s;
 }
+
+@media screen and (max-width: 680px) {
+  .character-card{
+    height: 10em;
+    width: 7.5em;
+  }
+
+  .character-images, .character-image-header {
+    height: 6.3em;
+  }
+
+  .name{
+    font-size: 100%;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .character-card{
+    margin: 2px;
+  }
+}

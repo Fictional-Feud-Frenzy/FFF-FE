@@ -34,9 +34,9 @@ const GET_CHARACTER = gql`
   }
 `;
 
-export default function CharacterInfo({setCharacter, character, selectPlayer1, selectPlayer2}){
+export default function CharacterInfo({ setCharacter, character, selectPlayer1, selectPlayer2 }) {
   let id = useParams().id
-  const {data, loading, error} = useQuery(GET_CHARACTER, {
+  const { data, loading, error } = useQuery(GET_CHARACTER, {
     variables: { id },
   });
   useEffect(()=>{

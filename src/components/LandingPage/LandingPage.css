@@ -8,19 +8,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10em;
 }
 .characters-button{
   background-image: url("../../assets/comicbookspread.jpeg");
   background-size: 100%;
   font-size: 500%;
   border-radius: 30px;
-  padding: 2em 1.5em 2em 1.5em;
+  padding: 1.5em 1.5em 1.5em 1.5em;
   transition: .7s;
 }
 
 .characters-button:hover {
-  padding: 2.1em 1.6em 2.1em 1.6em;
+  padding: 1.6em 1.6em 1.6em 1.6em;
   transition: .7s;
 }
 
@@ -38,9 +37,80 @@
   z-index: 1;
 }
 
+.landing-container {
+  display: flex;
+  align-items: center;
+  margin-top: 3em;
+}
+
 .intro-container{
-  margin-left: 10vw;
+  max-height: 80vh;
   width: 80vw;
-  background-color: hsl(0, 0%, 100%, .5);
+  background-color: hsl(0, 0%, 100%, .7);
   border-radius: 1em;
+  margin: 1em 2em 0em 2em;
+}
+
+.intro {
+  padding: 1em;
+}
+
+@media screen and (max-width: 1090px) {
+  .landing-container {
+    flex-direction: column-reverse;
+  }
+
+  .intro-container{
+    margin-top: 3em;
+  }
+
+  .characters-button {
+    padding: 1em 1.5em 1em 1.5em;
+  }
+}
+
+@media screen and (max-width: 865px) {
+  .characters-button {
+    padding: .7em 1.5em .7em 1.5em;
+  }
+}
+
+@media screen and (max-width: 680px) { 
+  .characters-button{
+    font-size: 300%;
+  }
+
+  .button-container {
+    margin-top: 2em;
+  }
+
+  .intro-container{
+    margin-top: 3em;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .landing-container {
+    margin-top: 1em;
+  }
+  
+  .characters-button{
+    font-size: 200%;
+    padding: 3em 1.5em 3em 1.5em;
+    background-size: 180%;
+  }
+  
+  .logo {
+    height: 7em;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  .characters-button{
+    font-size: 150%;
+  }
+
+  .logo {
+    height: 5em;
+  }
 }

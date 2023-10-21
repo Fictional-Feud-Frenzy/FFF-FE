@@ -80,3 +80,62 @@ h1 {
   color:white;
   font-size: 2em;
 }
+
+@media screen and (max-width: 680px) {
+  .player-header {
+    height: 10em;
+    width: 6.5em;
+    margin: 1em;
+  }
+
+  .unknown-selection {
+    height: 8em;
+    width: 5.5em;
+    margin: 1em;
+    font-size: 155%;
+  }
+
+  .title-search {
+    height: 16.5em;
+    width: 17em;
+  }
+
+  .input {
+    width: 13em;
+    height: 3em;
+  }
+
+  .input-text {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .player-header {
+    height: 8em;
+    width: 4.5em;
+    margin: .5em;
+  }
+
+  .unknown-selection {
+    height: 6em;
+    width: 3.5em;
+    border-radius: .5em;
+    margin: .5em;
+    font-size: 145%;
+  }
+
+  .title-search {
+    height: 16.5em;
+    width: 12em;
+  }
+
+  .input {
+    width: 11em;
+    height: 2.7em;
+  }
+
+  .characters-list {
+    margin-top: .5em; 
+  }
+}
