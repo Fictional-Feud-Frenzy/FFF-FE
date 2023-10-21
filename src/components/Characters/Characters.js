@@ -29,7 +29,7 @@ export default function Characters({userInput, setUserInput, setPublisher, publi
      const {data, loading, error} = useQuery(GET_CHARACTERS);
    useEffect(()=>{
     setCharacters(data?data.characters:characters)
-   },[data, characters, setCharacters])
+   },[data, setCharacters])
     let displayedCharacters = characters.map(({
       id,
       name,
