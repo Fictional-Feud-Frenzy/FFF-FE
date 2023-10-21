@@ -1,0 +1,24 @@
+{
+  "data": {
+    "createBattle": {
+        "id": "257",
+        "character1": {
+            "id": "1",
+            "__typename": "Character"
+        },
+        "character2": {
+            "id": "2",
+            "__typename": "Character"
+        },
+        "winner": {
+            "id": "2",
+            "name": "Abe Sapien",
+            "__typename": "Character"
+        },
+        "description": "In a deserted part of the city, Abe Sapien and A-Bomb found themselves facing each other. The air crackled with tension as they assessed one another, their formidable powers ready to clash.\n\nA-Bomb, a massive creature with explosive strength, lunged forward with a thunderous roar. His massive fists barreled towards Abe, aiming to demolish anything in their path. But Abe, with his aquatic grace, swiftly sidestepped the attack.\n\nUnfazed, A-Bomb unleashed a flurry of blows, each strike causing the ground to tremble. But Abe's agility proved to be his greatest asset. He evaded the onslaught effortlessly, his lithe form slipping through A-Bomb's clumsy strikes.\n\nSeizing the opportunity, Abe launched a counterattack. His fists, enhanced by years of combat training, connected with devastating precision. With every strike, A-Bomb staggered backward, his Herculean strength unable to match Abe's calculated blows.\n\nUndeterred, A-Bomb summoned all his might and unleashed a shockwave that rippled through the air. The earth quaked beneath Abe's feet as he fought to maintain balance. But he quickly recovered, his innate connection to the water helping him regain control.\n\nAbe, now fueled by determination, unleashed a wave of his own. Water surged forth, enveloping A-Bomb in a torrential embrace. The waves crashed against his body, momentarily subduing his explosive strength.\n\nAs A-Bomb struggled against the watery onslaught, Abe seized the opportunity to deliver a decisive blow. With a powerful kick, he sent A-Bomb hurtling through the air, crashing into a nearby building with a thunderous impact.\n\nThe dust settled, revealing A-Bomb lying motionless amidst the rubble. Abe stood strong, his victory evident in the air around him. He extended a hand, offering aid to his fallen opponent.\n\nThough they had battled fiercely, it was Abe's compassion that prevailed. As A-Bomb accepted the gesture, a newfound respect formed between them, transcending their clash of powers.\n\nAnd so, their paths diverged, leaving behind a memory of a battle fought with strength, agility, and ultimately, an unexpected bond forged in the heat of combat.",
+        "__typename": "Battle"
+    }
+},
+  "loading": false,
+  "error": false
+}
