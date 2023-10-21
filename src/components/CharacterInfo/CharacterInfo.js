@@ -67,9 +67,9 @@ return (
         <p><strong>Durability:</strong> {character.durability}</p>
         <p><strong>Power:</strong> {character.power}</p>
         <p><strong>Combat:</strong> {character.combat}</p>
+        <p><strong>Team:</strong> {character.groupAffiliation}</p>
         <p><strong>Eye Color:</strong> {character.eyeColor}</p>
         <p><strong>Gender:</strong> {character.gender}</p>
-        <p><strong>Team:</strong> {character.groupAffiliation}</p>
         <p><strong>Hair Color:</strong> {character.hairColor}</p>
         <p><strong>Height:</strong> {character.height}</p>
         <p><strong>Weight:</strong> {character.weight}</p>
