@@ -6,15 +6,13 @@ import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import BattleScreen from '../BattleScreen/BattleScreen';
 import LandingPage from '../LandingPage/LandingPage';
 import { Routes, Route, Link } from 'react-router-dom';
-import { testCharacters } from './testData'
 import { ApolloProvider } from '@apollo/client'
 import client from "../../ApolloClient/client";
 import ffflogo from "../../assets/ffflogo.png";
-import { sampleCharacter } from '../CharacterInfo/sampleCharacter';
 
 function App() {
-  const [characters, setCharacters] = useState(testCharacters);
-  const [character, setCharacter] = useState(sampleCharacter)
+  const [characters, setCharacters] = useState([]);
+  const [character, setCharacter] = useState({})
   const [player1, setPlayer1] = useState({})
   const [player2, setPlayer2] = useState({})
   const [publisher, setPublisher] = useState("all")
@@ -29,13 +27,6 @@ function App() {
     setUserInput("")
   }
 
-  // function getNorrisJoke(){
-  //   fetch('https://api.chucknorris.io/jokes/search?query=character')
-  //     .then(res=>res.json())
-  //     .then(data=>console.log(data.result[0].value))
-  // }
-  // getNorrisJoke()
-
   function selectCharacter(newCharacter){
     setCharacter(newCharacter)
   }
@@ -49,20 +40,6 @@ function App() {
     setCharacter({})
     setPlayer2(input)
   }
-
-  // function displayFight(){
-    // setWinner("");
-  //   setTimeout(() =>{
-  //     if(player1.powerStatsWeightedAverage > player2.powerStatsWeightedAverage){
-  //       setWinner(`${player1.name} wins!`)
-  //     }else if(player1.powerStatsWeightedAverage < player2.powerStatsWeightedAverage){
-  //       setWinner(`${player2.name} wins!`)
-  //     }else{
-  //       setWinner("It's a tie!")
-  //     }
-  //   return
-  // }, 3000)
-  // }
 
   function filterCharactersByNamePublisherAlignment(data, userInput, publisher, alignment, attribute){
     let filteredCharacters = data.characters
