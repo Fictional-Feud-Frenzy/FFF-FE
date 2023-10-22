@@ -4,7 +4,6 @@ import { useQuery, gql } from "@apollo/client"
 import {useParams} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-// import { sampleCharacter } from './sampleCharacter';
 
 const GET_CHARACTER = gql`
   query Character($id: ID!) {
