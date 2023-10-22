@@ -29,12 +29,13 @@ Overall, the purpose of the front end in the Fictional-Feud_Frenzy app is to sup
 - CSS
 - HTML
 - Cypress
-- Fetch API
+- GraphQL
 - Vercel Deployment
+- CircleCI testing 
 
 
 ## Running On
-  - Vercel
+  - [Vercel](https://fff-fe.vercel.app/)
 
 ## <b>Getting Started</b>
 
