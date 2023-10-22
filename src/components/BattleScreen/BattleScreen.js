@@ -46,8 +46,12 @@ function BattleScreen({player1, player2}){
     }
   }, [data]);
   
+  let i = 0
   useEffect(() => {
-      createBattle();
+      i++
+      if(i%2 === 1){
+        createBattle()
+      };
     },[createBattle]);
 
     if (error) return `Error! ${error}`;
