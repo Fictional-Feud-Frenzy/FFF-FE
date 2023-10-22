@@ -32,6 +32,7 @@ Overall, the purpose of the front end in the Fictional-Feud_Frenzy app is to sup
 - GraphQL
 - Vercel Deployment
 - CircleCI testing 
+- AI
 
 
 ## Running On
@@ -56,6 +57,10 @@ npm install
 ```
 npm start
 ```
+
+5. Get API key from OpenAI<br>
+[![OpenAI Badge](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=fff&style=for-the-badge)](https://platform.openai.com/)<br>
+
 
 ## Response
 ```
