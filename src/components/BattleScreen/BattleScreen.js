@@ -52,7 +52,7 @@ function BattleScreen({player1, player2}){
       if(i%2 === 1){
         createBattle()
       };
-    },[createBattle]);
+    },[createBattle,i]);
 
     if (error) return `Error! ${error}`;
 
