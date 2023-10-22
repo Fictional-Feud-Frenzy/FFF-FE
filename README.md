@@ -10,7 +10,7 @@ This is an SOA app and needs both this repo (front end) AND [![GitHub](https://i
 ### Overview
 This project is built to satisfy the requirements of the Turing School of Software and Design's [Capstone Project](https://mod4.turing.edu/projects/capstone/). Students come up with their own idea for an application and build it as a group project. Front end students and Back end students work together to simulate working on a full stack team
 
-<img src="app/assets/fff-logo-white.png">
+<img src=".github/fff-logo-white.png">
                     
 ## Purpose
 
@@ -29,12 +29,14 @@ Overall, the purpose of the front end in the Fictional-Feud_Frenzy app is to sup
 - CSS
 - HTML
 - Cypress
-- Fetch API
+- GraphQL
 - Vercel Deployment
+- CircleCI testing 
+- AI
 
 
 ## Running On
-  - Vercel
+  - [Vercel](https://fff-fe.vercel.app/)
 
 ## <b>Getting Started</b>
 
@@ -55,6 +57,10 @@ npm install
 ```
 npm start
 ```
+
+5. Get API key from OpenAI<br>
+[![OpenAI Badge](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=fff&style=for-the-badge)](https://platform.openai.com/)<br>
+
 
 ## Response
 ```
