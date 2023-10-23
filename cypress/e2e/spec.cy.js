@@ -2,7 +2,8 @@ const { VariablesInAllowedPositionRule } = require("graphql")
 
 describe('Fictional Feud Frenzy', () => {
   beforeEach('',()=>{
-    cy.visit('http://localhost:3000/')
+    // cy.visit('http://localhost:3000/')
+    cy.visit('http://fff-fe.vercel.app/')
     .intercept('POST','https://fff-be-2e7913919a6b.herokuapp.com/graphql', {
       statusCode: 201,
       fixture: 'characters'
