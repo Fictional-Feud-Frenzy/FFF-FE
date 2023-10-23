@@ -5,6 +5,4 @@ workflows:
     example-workflow:
       jobs:
       - cypress/run:
-          install-browsers: true
-          start-command: 'npm run cypress'
-          cypress-command: 'npx cypress run --browser chrome'
+          yarn: true
