@@ -61,7 +61,7 @@ describe('Fictional Feud Frenzy', () => {
     .get(".characters-header").children().first().contains('p','Player 1:').should('be.visible')
     .get(".characters-header").children().first().contains('p','A-Bomb').should('be.visible')
     .get(".characters-header").children().last().contains('p','Player 2').should('be.visible')
-    .get(".characters-header").last().contains('p','Abe Sapien').should('be.visible')
+    .get(".characters-header").children().last().contains('p','Abe Sapien').should('be.visible')
     .get(".character-image-header").should('have.length', 2)
     .get("button").contains(".fight-button","FIGHT!!!").should("be.visible")
   })
