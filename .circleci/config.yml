@@ -1,31 +1,8 @@
 version: 2.1
-
-jobs:
-  build-and-test:
-    docker:
-      - image: cypress/browsers:node12.18.3-chrome88-ff84
-    working_directory: ~/project
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - yarn-v1-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          paths:
-            - ~/.cache/yarn
-          key: yarn-v1-{{ checksum "yarn.lock" }}
-      - run:
-          name: Run Yarn Tests
-          command: yarn test
-      - run:
-          name: Run Cypress Tests
-          command: yarn cypress:run
-
+orbs:
+  cypress: cypress-io/cypress@3.1.4
 workflows:
-  version: 2
-  build:
-    jobs:
-      - build-and-test
+    example-workflow:
+      jobs:
+        - cypress/run:
+            start-command: run cypress 
