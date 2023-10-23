@@ -1,8 +1,8 @@
 version: 2.1
 orbs:
-  cypreyy: cypress-io/cypress@1
+  node: circleci/node@5.1.0
 workflows:
-  build:
-    jobs:
-      - cypress/run
-       
+    example-workflow:
+      jobs:
+        - node/run:
+            npm-run: cypress 
