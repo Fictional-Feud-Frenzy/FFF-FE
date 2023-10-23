@@ -61,46 +61,62 @@ npm start
 5. Get API key from OpenAI<br>
 [![OpenAI Badge](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=fff&style=for-the-badge)](https://platform.openai.com/)<br>
 
+## App Workflow
 
-## Response
+```mermaid
+sequenceDiagram
+    participant User as User
+    participant ReactFE as React Frontend
+    participant RailsBE as Rails Backend
+    participant PGDB as PostgreSQL Database
+    participant ChatGPT as ChatGPT API
+
+    User->>ReactFE: clicks "View Characters"
+    ReactFE->>RailsBE: Request: characters(all)
+    RailsBE->>PGDB: Query: Character.all
+    PGDB-->>RailsBE: Response: <all characters>
+    RailsBE-->>ReactFE: Response: [characters]!
+    ReactFE->>User: Character Select Screen
+
+    User->>ReactFE: clicks on a superhero in the list
+    ReactFE->>RailsBE: Request: character(by ID)
+    RailsBE->>PGDB: Query: character.find_by(id)
+    PGDB-->>RailsBE: Response: character
+    RailsBE-->>ReactFE: Response: character info
+    ReactFE->>User: Character Info Page
+
+    User->>ReactFE: Clicks "Select Player 1"
+    ReactFE->>ReactFE: Save Player 1 selection
+    ReactFE->>User: Navigates back to Character Select Screen
+
+    User->>ReactFE: clicks on another superhero in the list
+    ReactFE->>RailsBE: Request: character(by ID) for Player 2
+    RailsBE->>PGDB: Query: character.find_by(id)
+    PGDB-->>RailsBE: Response: character
+    RailsBE-->>ReactFE: Response: character info
+    ReactFE->>User: Character Info Page
+
+    User->>ReactFE: Clicks "Choose Player 2"
+    ReactFE->>ReactFE: Save Player 2 selection
+    ReactFE->>User: Navigate back to Character Select Screen
+
+    User->>ReactFE: clicks Fight with "players" selected
+    ReactFE->>RailsBE: Request: createBattle(character1 ID, character2 ID)
+    Note over User,ReactFE: Renders battle-page animations until response from backend
+    RailsBE->>PGDB: Query: character.find_by(id character1)
+    PGDB-->>RailsBE: Response: character1
+    RailsBE->>PGDB: Query: character.find_by(id character2)
+    PGDB-->>RailsBE: Response: character2
+    activate RailsBE
+    RailsBE->>RailsBE: Decide Winner
+    RailsBE->>ChatGPT: Request: fetch description
+    ChatGPT-->>RailsBE: Response: battle description
+    deactivate RailsBE
+    RailsBE-->>ReactFE: Response: battle(winner description)
+    ReactFE->>User: Battle Result
 ```
-Character Response:
 
-{
-  "id": 70,
-  "name": "Batman", - req
-  "intelligence": 100, - req
-  "strength": 26, -req
-  "speed": 27, -req
-  "durability": 50, -req
-  "power": 47, -req
-  "combat": 100, -req
-  "full-name": "Bruce Wayne",
-  "place-of-birth": "Crest Hill, Bristol Township; Gotham County",
-  "publisher": "DC Comics",
-  "alignment": "good",
-  "gender": "Male",
-  "race": "Human",
-  "height":  "6'2",
-  "weight": "210 lb",
-  "eye-color": "blue",
-  "hair-color": "black"
-  "group-affiliation": "Batman Family, Batman Incorporated, Justice League, Outsiders, Wayne Enterprises, Club of Heroes, formerly White Lantern Corps, Sinestro Corps"
-  "image": "httpss://www.superherodb.com/pictures2/portraits/10/100/639.jpg" -req
-}
-
-CHUCK NORRIS RESPONSE:
-
-"Chuck Norris was supposed the be the main character for the LOST series. He turned down the role because he didnt want to be the only one FOUND"
-
-AI RESPONSE:
-
-"In the darkness of a desolate city, Batman and Superman faced each other with unwavering determination. The air crackled with tension as their contrasting silhouettes cast long shadows against the moonlit skyline.\n\nBatman, relying on his mastery of strategy and gadgetry, swiftly launched a barrage of smoke pellets, enveloping the area in a thick fog. Using this momentary advantage, he unleashed a series of calculated strikes, testing Superman's invulnerability.\n\nSuperman, however, was no ordinary opponent. He possessed godlike strength and unyielding determination."
-
-
-```
-
-## Schema
+## BE Schema
 ```
 create_table "characters", force: :cascade do |t|
   t.string "name"
