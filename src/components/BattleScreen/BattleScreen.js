@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import './BattleScreen.css';
 import { useMutation, gql } from '@apollo/client';
 import { useEffect, useState} from 'react';
@@ -50,7 +50,7 @@ function BattleScreen({player1, player2}){
     if(player1.id===undefined){
     navigate('/characters')
     }
-  },[reload])
+  },[reload, player1.id, navigate])
 
   useEffect(() => {
     setWinner('')
@@ -65,7 +65,7 @@ function BattleScreen({player1, player2}){
       if(i%2 === 1 && player1.id && player2.id){
         createBattle()
       };
-    },[createBattle,i]);
+    },[createBattle, i, player1.id, player2.id]);
 
     if (error) return `Error! ${error}`;
 
@@ -84,7 +84,7 @@ function BattleScreen({player1, player2}){
           {loading?
           <div className="fight-animation">
             <p className="fighting">{player1.name} and {player2.name} are Fighting!</p>
-            <img className="gif shake" src="https://media.tenor.com/usAe9cUw1q0AAAAC/bam-pow.gif"></img>
+            <img className="gif shake" src="https://media.tenor.com/usAe9cUw1q0AAAAC/bam-pow.gif" alt="Bam-Pow-Gif"></img>
           </div>
             :
           <div className="declared-winner">
