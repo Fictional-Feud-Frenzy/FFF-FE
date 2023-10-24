@@ -21,8 +21,11 @@
   border-radius: 2em;
 }
 
-.fighting{
-  margin-top: -14em;
+.gif {
+  border-radius: 10em;
+  border: 2px solid white;
+  margin: 1em;
+  width: 30vw;
 }
 
 .shake {

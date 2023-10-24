@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './BattleScreen.css';
 import { useMutation, gql } from '@apollo/client';
 import { useEffect, useState} from 'react';
@@ -31,6 +31,9 @@ function BattleScreen({player1, player2}){
   let [description, setDescription] = useState('')
   let playerID1 = parseInt(player1.id)
   let playerID2 = parseInt(player2.id)
+  let i = 0
+  let reload = false
+  let navigate = useNavigate()
   
   const [createBattle, {data, loading, error}] = useMutation(GET_BATTLE, {
     variables: {
@@ -38,6 +41,17 @@ function BattleScreen({player1, player2}){
       character2: playerID2,
     },
   }); 
+  
+  if(player1.id===undefined){
+    reload = true
+  }
+  
+  useEffect(()=>{
+    if(player1.id===undefined){
+    navigate('/characters')
+    }
+  },[reload])
+
   useEffect(() => {
     setWinner('')
     if(data){ 
@@ -46,10 +60,9 @@ function BattleScreen({player1, player2}){
     }
   }, [data]);
   
-  let i = 0
   useEffect(() => {
       i++
-      if(i%2 === 1){
+      if(i%2 === 1 && player1.id && player2.id){
         createBattle()
       };
     },[createBattle,i]);
@@ -70,8 +83,8 @@ function BattleScreen({player1, player2}){
         <div className="fight-results">
           {loading?
           <div className="fight-animation">
-            <p className="bang">💥</p>
-            <p className="fighting">{player1.name} and {player2.name} are Fighting...</p>
+            <p className="fighting">{player1.name} and {player2.name} are Fighting!</p>
+            <img className="gif shake" src="https://media.tenor.com/usAe9cUw1q0AAAAC/bam-pow.gif"></img>
           </div>
             :
           <div className="declared-winner">
@@ -113,7 +126,7 @@ BattleScreen.propTypes = {
     image: PropTypes.string,
     placeOfBirth: PropTypes.string,
     powerStatsWeightedAverage: PropTypes.number,
-  }),
+  }).isRequired,
   player2: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -129,5 +142,5 @@ BattleScreen.propTypes = {
     image: PropTypes.string,
     placeOfBirth: PropTypes.string,
     powerStatsWeightedAverage: PropTypes.number,
-  })
+  }).isRequired
 }
