@@ -1,6 +1,6 @@
 import CharacterCard from "../CharacterCard/CharacterCard"
 import "./Characters.css"
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { useQuery, gql } from "@apollo/client"
 import PropTypes from 'prop-types';
 import { useEffect } from "react";
@@ -59,11 +59,14 @@ return(
     <img className="bg-img" src="https://www.therange.co.uk/media/3/2/1655910356_7164.jpg" alt="comic panel background"></img>
     <div className="characters-header content-container">
       {player1.image !== undefined?
+      <NavLink to={player1.id}>
       <div className="player-header">
         <p>Player 1:</p>
         <img className="character-image-header" src={player1.image} alt={player1.name} />
         <p>{player1.name}</p>
-      </div>:<h2 className="unknown-selection" >Please Select<br/>Player #1</h2>}
+      </div>
+      </NavLink>
+      :<h2 className="unknown-selection" >Please Select<br/>Player #1</h2>}
       <div className="title-search">
         {player1.image&&player2.image?
         <Link to="/battle-mode">
@@ -115,11 +118,14 @@ return(
         </select>
       </div>
       {player2.image !== undefined?
+      <NavLink to={player2.id}>
       <div className="player-header">
         <p>Player 2:</p>
         <img className="character-image-header" src={player2.image} alt={player2.name} />
         <p>{player2.name}</p>
-      </div>:<h2 className="unknown-selection" >Please Select<br/>Player #2</h2>}
+      </div>
+      </NavLink>
+      :<h2 className="unknown-selection" >Please Select<br/>Player #2</h2>}
     </div>
     <div className="characters-list content-container">
       {displayedCharacters.length?displayedCharacters:<p className="white" >No characters found, please try a different search.</p>}
